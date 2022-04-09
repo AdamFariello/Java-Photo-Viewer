@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.VBox?>
+
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <MenuBar>
+        <menus>
+          <Menu mnemonicParsing="false" text="File">
+            <items>
+              <MenuItem mnemonicParsing="false" text="Logout" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Album">
+            <items>
+                  <MenuItem mnemonicParsing="false" text="Rename Alubm" />
+              <MenuItem mnemonicParsing="false" text="Create Album" />
+                  <MenuItem mnemonicParsing="false" text="Delete Album" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Photo">
+            <items>
+                  <MenuItem mnemonicParsing="false" text="View Photo" />
+                  <MenuItem mnemonicParsing="false" text="Search Photo" />
+                  <MenuItem mnemonicParsing="false" text="Rename Photo" />
+                  <MenuItem mnemonicParsing="false" text="Edit Photo" />
+              <MenuItem mnemonicParsing="false" text="Add Photo" />
+                  <MenuItem mnemonicParsing="false" text="Delete Photo" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
+      <FlowPane prefHeight="374.0" prefWidth="600.0" />
+   </children>
+</VBox>
