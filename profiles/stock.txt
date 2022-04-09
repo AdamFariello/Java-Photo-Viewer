@@ -1,0 +1,6 @@
+stock
+stock/"/home/adamf/code_Environments/Eclipse/Workspace.Rutgers/213/photos/stock Photos/1.jpeg"
+stock/"/home/adamf/code_Environments/Eclipse/Workspace.Rutgers/213/photos/stock Photos/2.jpeg"
+stock/"/home/adamf/code_Environments/Eclipse/Workspace.Rutgers/213/photos/stock Photos/3.jpeg"
+stock/"/home/adamf/code_Environments/Eclipse/Workspace.Rutgers/213/photos/stock Photos/4.jpeg"
+stock/"/home/adamf/code_Environments/Eclipse/Workspace.Rutgers/213/photos/stock Photos/5.jpeg"
