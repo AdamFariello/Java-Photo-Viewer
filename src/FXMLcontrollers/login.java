@@ -17,8 +17,6 @@ public class login {
 	@FXML private TextField TextField_login;
 	@FXML private Label label_incorrectLogin;
 	
-
-	
 	@FXML public void logIn(ActionEvent event) throws Exception {
 		//TODO add initalization
 		File file = proMan.getProfile(TextField_login.getText()); 
