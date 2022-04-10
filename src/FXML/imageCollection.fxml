@@ -1,40 +1,47 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.ToolBar?>
 <?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
 
-
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="492.0" prefWidth="661.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <MenuBar>
-        <menus>
-          <Menu mnemonicParsing="false" text="File">
-            <items>
-              <MenuItem mnemonicParsing="false" text="Logout" />
-            </items>
-          </Menu>
-          <Menu mnemonicParsing="false" text="Album">
-            <items>
-                  <MenuItem mnemonicParsing="false" text="Rename Alubm" />
-              <MenuItem mnemonicParsing="false" text="Create Album" />
-                  <MenuItem mnemonicParsing="false" text="Delete Album" />
-            </items>
-          </Menu>
-          <Menu mnemonicParsing="false" text="Photo">
-            <items>
-                  <MenuItem mnemonicParsing="false" text="View Photo" />
-                  <MenuItem mnemonicParsing="false" text="Search Photo" />
-                  <MenuItem mnemonicParsing="false" text="Rename Photo" />
-                  <MenuItem mnemonicParsing="false" text="Edit Photo" />
-              <MenuItem mnemonicParsing="false" text="Add Photo" />
-                  <MenuItem mnemonicParsing="false" text="Delete Photo" />
-            </items>
-          </Menu>
-        </menus>
-      </MenuBar>
-      <FlowPane prefHeight="374.0" prefWidth="600.0" />
+      <ToolBar prefHeight="27.0" prefWidth="661.0">
+        <items>
+            <MenuBar>
+              <menus>
+                  <Menu mnemonicParsing="false" text="File">
+                     <items>
+                    <MenuItem mnemonicParsing="false" text="Create Album" />
+                    <MenuItem mnemonicParsing="false" text="Add Photo" />
+                        <MenuItem mnemonicParsing="false" text="Delete Selected" />
+                     </items>
+                  </Menu>
+              </menus>
+            </MenuBar>
+            <Line endX="-99.37867736816406" endY="38.19041061401367" opacity="0.52" startX="-100.0" />
+            <Button mnemonicParsing="false" text="rename" />
+            <Button mnemonicParsing="false" text="edit Photo" />
+          <Button mnemonicParsing="false" text="view Photo" />
+            <Button mnemonicParsing="false" text="search Photo" />
+            <Line endX="-99.37867736816406" endY="38.19041061401367" opacity="0.52" startX="-100.0" stroke="#000000c9" />
+            <Button mnemonicParsing="false" text="&lt;" />
+            <Button mnemonicParsing="false" text="&gt;" />
+            <Label prefHeight="19.0" prefWidth="100.0" text="space" textFill="TRANSPARENT">
+               <font>
+                  <Font size="1.0" />
+               </font>
+            </Label>
+            <Button alignment="CENTER" mnemonicParsing="false" text="logout" />
+        </items>
+      </ToolBar>
+      <FlowPane prefHeight="399.0" prefWidth="661.0" />
    </children>
 </VBox>
