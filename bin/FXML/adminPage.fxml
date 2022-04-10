@@ -10,14 +10,14 @@
    <children>
       <ToolBar prefHeight="40.0" prefWidth="200.0">
         <items>
-            <Button fx:id="logout" mnemonicParsing="false" text="Log out" />
+            <Button mnemonicParsing="false" onAction="#logout" text="Log out" />
         </items>
       </ToolBar>
-      <ListView prefHeight="327.0" prefWidth="600.0" />
+      <ListView fx:id="listview" prefHeight="327.0" prefWidth="600.0" />
       <HBox alignment="CENTER" prefHeight="39.0" prefWidth="600.0">
          <children>
-            <Button fx:id="createUser" mnemonicParsing="false" text="Create User" />
-            <Button fx:id="deleteUser" mnemonicParsing="false" text="Delete User" />
+            <Button mnemonicParsing="false" onAction="#createUser" text="Create User" />
+            <Button mnemonicParsing="false" onAction="#deleteUser" text="Delete User" />
          </children>
       </HBox>
    </children>

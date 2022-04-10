@@ -1,6 +1,10 @@
 package general;
 
 import java.io.File;
+import java.io.FileFilter;
+import java.util.ArrayList;
+import java.util.List;
+
 
 //proman := PROfile MANipulation
 public class proMan {
@@ -12,7 +16,7 @@ public class proMan {
 		lock = false;
 	}
 	
-	public void switchLock() {
+	public static void switchLock() {
 		// "^=" := xOR
 		// (true  ^ true) = false
 		// (false ^ true) = true
@@ -23,18 +27,29 @@ public class proMan {
 		return lock;
 	}
 	
-	public static File getProfile(String fileName) {
-		try { 
-			String profileLocation =  System.getProperty("user.dir") + "/profiles";
-			File dir = new File(profileLocation);
-			File[] files = dir.listFiles();
-			for (File file : files) 
-				if (file.getName().equals(fileName + ".txt")) 
-					return file;
-			
-		} catch (Exception e) {
-			System.out.println(e);
-		}
+	public static List<String> getProfileNames(File [] files) {
+		List<String> list = new ArrayList();
+		for (File file: files)
+			list.add(file.getName());
+		
+		return list;
+	}
+	
+	public static File[] getProfiles() {
+		String profileLocation =  System.getProperty("user.dir") + "/profiles";
+		File dir = new File(profileLocation);
+		return dir.listFiles();
+	}
+	
+	public static File checkProfile(String fileName) {
+		File[] files = getProfiles();
+		for (File file : files)
+			if (file.getName().equals(fileName + ".txt")) 
+				return file;
 		return null;
+	}
+	
+	public static void createProfile() {
+		//TODO
 	}
 }

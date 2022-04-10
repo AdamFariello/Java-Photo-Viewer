@@ -19,23 +19,28 @@ public class login {
 	
 	@FXML public void logIn(ActionEvent event) throws Exception {
 		//TODO add initalization
-		File file = proMan.getProfile(TextField_login.getText()); 
+		File file = proMan.checkProfile(TextField_login.getText()); 
 		if (file != null) {
 			FXMLLoader FXMLLoader;
+			Parent root;
 			switch (file.getName()) {
 				case "admin.txt":
 					FXMLLoader = new FXMLLoader(
 						getClass().getResource("../FXML/adminPage.fxml")
 					);
+					root = FXMLLoader.load();
+					adminPage adminPage = FXMLLoader.getController();
+					adminPage.init();
 					break;
 				default: 
 					FXMLLoader = new FXMLLoader(
 						getClass().getResource("../FXML/userPage.fxml")
 					);
+					root = FXMLLoader.load();
 					break;
 			}
 			
-			Parent root = FXMLLoader.load();
+
 			Scene scene = new Scene(root);
 			Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
 			stage.setScene(scene);
