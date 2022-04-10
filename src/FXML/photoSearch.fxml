@@ -104,13 +104,11 @@
          <items>
             <Button mnemonicParsing="false" text="exit" />
             <Line endX="-99.37867736816406" endY="38.19041061401367" opacity="0.52" startX="-100.0" />
-            <Button mnemonicParsing="false" text="rename" />
-            <Button mnemonicParsing="false" text="edit Photo" />
             <Button mnemonicParsing="false" text="view Photo" />
             <Line endX="-99.37867736816406" endY="38.19041061401367" opacity="0.52" startX="-100.0" stroke="#000000c9" />
             <Button mnemonicParsing="false" text="&lt;" />
             <Button mnemonicParsing="false" text="&gt;" />
-            <Label prefHeight="27.0" prefWidth="158.0" text="space" textFill="TRANSPARENT">
+            <Label prefHeight="28.0" prefWidth="301.0" text="space" textFill="TRANSPARENT">
                <font>
                   <Font size="1.0" />
                </font>

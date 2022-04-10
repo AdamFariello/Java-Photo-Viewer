@@ -6,19 +6,18 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="FXMLcontrollers.adminPage">
    <children>
       <ToolBar prefHeight="40.0" prefWidth="200.0">
         <items>
-            <Button mnemonicParsing="false" text="Log out" />
+            <Button fx:id="logout" mnemonicParsing="false" text="Log out" />
         </items>
       </ToolBar>
       <ListView prefHeight="327.0" prefWidth="600.0" />
       <HBox alignment="CENTER" prefHeight="39.0" prefWidth="600.0">
          <children>
-            <Button mnemonicParsing="false" text="Create User" />
-            <Button mnemonicParsing="false" text="Delete User" />
+            <Button fx:id="createUser" mnemonicParsing="false" text="Create User" />
+            <Button fx:id="deleteUser" mnemonicParsing="false" text="Delete User" />
          </children>
       </HBox>
    </children>
