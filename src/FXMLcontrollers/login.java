@@ -31,7 +31,7 @@ public class login {
 					);
 					root = FXMLLoader.load();
 					adminPage adminPage = FXMLLoader.getController();
-					adminPage.loadList();
+					adminPage.init(profileList);
 					break;
 				default: 
 					//TODO

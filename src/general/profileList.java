@@ -38,4 +38,8 @@ public class profileList {
 				return file;
 		return null;
 	}
+	
+	public String getDir () {
+		return fileLocation;
+	}
 }

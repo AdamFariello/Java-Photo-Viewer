@@ -23,6 +23,11 @@ public class adminPage {
 	private File selectedFile;
 	private profileList profileList;
 		
+	public void init(profileList profileList) {
+		this.profileList = profileList;
+		loadList();
+	}
+	
 	public void loadList() {
 		try {
 			selectedFile = null;
@@ -43,7 +48,7 @@ public class adminPage {
 	/*Buttons*/
 	@FXML public void logout (ActionEvent event) throws Exception{
 		//Puts it in infinite loop until write is done
-		while (lock.getLock());
+		while (lock.isLocked());
 		
 		FXMLLoader FXMLLoader = new FXMLLoader(
 			getClass().getResource("../FXML/login.fxml")
@@ -55,22 +60,30 @@ public class adminPage {
 		stage.setResizable(false);
 		stage.show();
 	}
-	@FXML public void createUser () throws Exception {		
-		//TODO work on creating a user
-		createUser createUser = new createUser();
-		createUser.init(profileList);
-		
+	@FXML public void createUser (ActionEvent event) throws Exception {		
+		//Setting up laod and initalizing the window	
 		FXMLLoader FXMLLoader = new FXMLLoader(
 			getClass().getResource("../FXML/createUser.fxml")
 		);
 		Parent root = FXMLLoader.load();
+		createUser createUser = FXMLLoader.getController();
+		createUser.init(profileList);
+				
+		//Launching the window
 		Scene scene = new Scene(root);
 		Stage stage = new Stage();
 		stage.setScene(scene);
 		stage.setResizable(false);
-		stage.show();
+		stage.showAndWait();
+		
+		//Called after create user is closed
+		profileList.loadProfileFiles();
+		loadList();
 	}
 	@FXML public void deleteUser () {
+		while (lock.isLocked());
+		
+		lock.lock();
 		try {
 			selectedFile.delete();
 			loadList();
@@ -80,5 +93,6 @@ public class adminPage {
 			alert.setContentText("Select a profile first before deleting it");
 			alert.showAndWait();
 		}
+		lock.unlock();
 	}	
 }

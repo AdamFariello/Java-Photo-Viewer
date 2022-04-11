@@ -4,19 +4,22 @@ public class lock {
 	private static boolean lock;
 	
 	public static void init() {
-		//false := there is no lock
-		//true 	:= there is a lock, can't close application yet.
+		//false := it is not locked
+		//true 	:= it is locked
 		lock = false;
 	}
 	
-	public static void switchLock() {
-		// "^=" := xOR
-		// (true  ^= true) = false
-		// (false ^= true) = true
-		lock ^= true;
+	//Originally I used xOR, but I thought
+	//this would look better 
+	public static void lock() {
+		lock = true;
 	}
 	
-	public static boolean getLock() {
+	public static void unlock() {
+		lock = false;
+	}
+	
+	public static boolean isLocked() {
 		return lock;
 	}
 }
