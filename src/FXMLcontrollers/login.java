@@ -11,35 +11,36 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import general.proMan;
+import general.profileList;
 
 public class login {
 	@FXML private TextField TextField_login;
 	@FXML private Label label_incorrectLogin;
 	
 	@FXML public void logIn(ActionEvent event) throws Exception {
-		//TODO add initalization
-		File file = proMan.checkProfile(TextField_login.getText()); 
+		profileList profileList = new profileList();
+		File file = profileList.getFile(TextField_login.getText()); 
 		if (file != null) {
 			FXMLLoader FXMLLoader;
 			Parent root;
 			switch (file.getName()) {
+				//You can only load the list after you lt first. 
 				case "admin.txt":
 					FXMLLoader = new FXMLLoader(
 						getClass().getResource("../FXML/adminPage.fxml")
 					);
 					root = FXMLLoader.load();
 					adminPage adminPage = FXMLLoader.getController();
-					adminPage.init();
+					adminPage.loadList();
 					break;
 				default: 
+					//TODO
 					FXMLLoader = new FXMLLoader(
 						getClass().getResource("../FXML/userPage.fxml")
 					);
 					root = FXMLLoader.load();
 					break;
 			}
-			
 
 			Scene scene = new Scene(root);
 			Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();

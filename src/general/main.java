@@ -2,6 +2,7 @@ package general;
 
 import java.net.URL;
 
+import FXMLcontrollers.login;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -25,7 +26,6 @@ public class main extends Application{
 	}
 	
 	public static void main (String args []) {
-		proMan.init();
 		launch(args);
 	}
 }
