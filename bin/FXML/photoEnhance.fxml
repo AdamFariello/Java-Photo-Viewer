@@ -13,31 +13,31 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="FXMLcontrollers.photoEnhance">
+<VBox fx:controller="FXMLcontrollers.photoEnhance" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <ToolBar prefHeight="27.0" prefWidth="661.0">
          <items>
-            <Button mnemonicParsing="false" text="exit" />
+            <Button mnemonicParsing="false" onAction="#Exit" text="exit" />
             <Line endX="-99.37867736816406" endY="38.19041061401367" opacity="0.52" startX="-100.0" />
-            <Button mnemonicParsing="false" text="rename" />
-            <Button mnemonicParsing="false" text="edit Photo" />
-            <Button mnemonicParsing="false" text="view Photo" />
-            <Button mnemonicParsing="false" text="search Photo" />
+            <Button mnemonicParsing="false" onAction="#rename" text="rename" />
+            <Button mnemonicParsing="false" onAction="#editPhoto" text="edit Photo" />
+            <Button mnemonicParsing="false" onAction="#viewPhoto" text="view Photo" />
+            <Button mnemonicParsing="false" onAction="#searchPhoto" text="search Photo" />
             <Line endX="-99.37867736816406" endY="38.19041061401367" opacity="0.52" startX="-100.0" stroke="#000000c9" />
-            <Button mnemonicParsing="false" text="&lt;" />
-            <Button mnemonicParsing="false" text="&gt;" />
+            <Button mnemonicParsing="false" onAction="#scrollLeft" text="&lt;" />
+            <Button mnemonicParsing="false" onAction="#scrollRight" text="&gt;" />
             <Label prefHeight="25.0" prefWidth="50.0" text="space" textFill="TRANSPARENT">
                <font>
                   <Font size="1.0" />
                </font>
             </Label>
-            <Button alignment="CENTER" mnemonicParsing="false" text="logout" />
+            <Button alignment="CENTER" mnemonicParsing="false" onAction="#logout" text="logout" />
          </items>
       </ToolBar>
-      <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="352.0" prefWidth="600.0">
+      <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0">
          <children>
-            <ImageView id="ImageViewer" fx:id="ImageViewer" fitHeight="350.0" fitWidth="418.0" pickOnBounds="true" preserveRatio="true" />
-            <Line endX="-109.24250793457031" endY="368.7220764160156" startX="-109.24220275878906" startY="-1.4142056703567505" />
+            <ImageView fitHeight="400.0" fitWidth="418.0" pickOnBounds="true" preserveRatio="true" />
+            <Line endX="-104.96245574951172" endY="368.7220764160156" startX="-109.24220275878906" startY="-1.4142056703567505" />
             <VBox prefHeight="401.0" prefWidth="173.0">
                <children>
                   <VBox prefHeight="65.0" prefWidth="153.0">
@@ -49,7 +49,7 @@
                   <VBox prefHeight="122.0" prefWidth="153.0">
                      <children>
                         <Label text="Caption" />
-                        <TextArea editable="false" prefHeight="98.0" prefWidth="153.0" text="&lt;Insert Caption&gt;&#10;" />
+                        <TextArea fx:id="tf_caption" editable="false" prefHeight="98.0" prefWidth="153.0" text="&lt;Insert Caption&gt;&#10;" />
                      </children>
                   </VBox>
                   <VBox prefHeight="122.0" prefWidth="153.0">

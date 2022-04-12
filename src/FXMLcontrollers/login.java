@@ -42,7 +42,7 @@ public class login {
 					root = FXMLLoader.load();
 					
 					File loadFile = new File(
-						"/home/adamf/code_Environments/Eclipse/Workspace.Rutgers/213/photos/stockPhotos/1.jpeg/"
+						"/home/adamf/code_Environments/Eclipse/Workspace.Rutgers/213/photos/stockPhotos/5.JPG/"
 					);
 					photoEnhance photoEnhance = FXMLLoader.getController();
 					photoEnhance.loadImage(loadFile);
