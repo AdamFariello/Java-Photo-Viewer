@@ -2,6 +2,7 @@ package FXMLcontrollers;
 
 import java.io.File;
 import java.io.FileInputStream;
+import objects.photo;
 
 import javafx.collections.ObservableMap;
 import javafx.event.ActionEvent;
@@ -19,18 +20,11 @@ public class photoEnhance {
 	@FXML public TextArea tf_caption;
 	@FXML public TextArea tf_tags;
 	
-	public void loadImage (File file) throws Exception {
-		//TODO ; this covers loading details from photo
-		FileInputStream stream = new FileInputStream(file.toString());
-		Image image = new Image(stream);
-		ImageViewer.setImage(image);
-		lb_Name.setText(file.getName());
-		
-		/*
-		Media media = new Media(file.toString());
-		String string = (String) media.getMetadata().get("Caption");
-		System.out.println("test: " +string);
-		*/
+	public void loadPhoto (photo photo) throws Exception {
+		ImageViewer.setImage(photo.getImage());
+		lb_Name.setText(photo.getImageName());
+		tf_caption.setText(photo.getCaption());
+		tf_tags.setText(photo.getTags());	
 	}
 	
 	/*Task Bar*/
