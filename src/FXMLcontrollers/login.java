@@ -34,11 +34,18 @@ public class login {
 					adminPage.init(profileList);
 					break;
 				default: 
-					//TODO
+					/*TODO setup photoEnhance to folderView*/
 					FXMLLoader = new FXMLLoader(
-						getClass().getResource("../FXML/userPage.fxml")
+						//getClass().getResource("../FXML/userPage.fxml")
+						getClass().getResource("../FXML/photoEnhance.fxml")	
 					);
 					root = FXMLLoader.load();
+					
+					File loadFile = new File(
+						"/home/adamf/code_Environments/Eclipse/Workspace.Rutgers/213/photos/stockPhotos/1.jpeg/"
+					);
+					photoEnhance photoEnhance = FXMLLoader.getController();
+					photoEnhance.loadImage(loadFile);
 					break;
 			}
 

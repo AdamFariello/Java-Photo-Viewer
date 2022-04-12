@@ -30,10 +30,13 @@ public class adminPage {
 	
 	public void loadList() {
 		try {
+			//Variable setup
 			selectedFile = null;
-			listview.getItems().clear();
-			profileList = new profileList();
+			profileList.loadProfileFiles();
 			List<String> list = profileList.toList();
+
+			//filling listview
+			listview.getItems().clear();
 			listview.getItems().addAll(FXCollections.observableList(list));
 			listview.setOnMouseClicked(e-> {
 				String string = listview.getSelectionModel().getSelectedItem();
@@ -76,14 +79,12 @@ public class adminPage {
 		stage.setResizable(false);
 		stage.showAndWait();
 		
-		//Called after create user is closed
-		profileList.loadProfileFiles();
 		loadList();
 	}
 	@FXML public void deleteUser () {
 		while (lock.isLocked());
-		
 		lock.lock();
+		
 		try {
 			selectedFile.delete();
 			loadList();
@@ -93,6 +94,7 @@ public class adminPage {
 			alert.setContentText("Select a profile first before deleting it");
 			alert.showAndWait();
 		}
+		
 		lock.unlock();
 	}	
 }

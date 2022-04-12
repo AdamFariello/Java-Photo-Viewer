@@ -18,8 +18,10 @@ public class profileList {
 	}
 	
 	public File[] loadProfileFiles() {
+		lock.lock();
 		File dir = new File(fileLocation);
 		files = dir.listFiles();
+		lock.unlock();
 		return files;
 	}
 	
