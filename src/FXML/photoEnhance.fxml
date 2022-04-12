@@ -13,7 +13,7 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<VBox fx:controller="FXMLcontrollers.photoEnhance" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="FXMLcontrollers.photoEnhance">
    <children>
       <ToolBar prefHeight="27.0" prefWidth="661.0">
          <items>
@@ -36,7 +36,7 @@
       </ToolBar>
       <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0">
          <children>
-            <ImageView fitHeight="400.0" fitWidth="418.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="ImageViewer" fitHeight="400.0" fitWidth="418.0" pickOnBounds="true" preserveRatio="true" />
             <Line endX="-104.96245574951172" endY="368.7220764160156" startX="-109.24220275878906" startY="-1.4142056703567505" />
             <VBox prefHeight="401.0" prefWidth="173.0">
                <children>
