@@ -14,6 +14,9 @@ public class main extends Application{
 	
 	@Override
 	public void start(Stage stage) throws Exception {
+		//System.out.println(System.getProperty("user.dir"));
+		//"../213/photos"
+		
 		String string = "../FXML/login.fxml";
 		FXMLLoader FXMLLoader = new FXMLLoader(getClass().getResource(string));
 		Parent root = FXMLLoader.load();

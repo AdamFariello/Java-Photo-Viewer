@@ -1,4 +1,4 @@
-package objects;
+package ourFilesTM;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -8,21 +8,21 @@ import java.util.LinkedList;
 
 import javafx.scene.image.Image;
 
-public class Photo {
+public class Photo extends FileTM{
 	//The reason why the tags are String is that 
 	//the tag data will be given as: "person:Ana person:Albert".
 	//Two split methods can be applied, hence the tag. 
-	private Image image;
-	private String imageName;
 	private String caption;
 	private LinkedList<String[]> tags;
 	private Calendar calendar;
 	
 	public Photo (File file) throws Exception{
+		//Inherited
 		FileInputStream stream = new FileInputStream(file.toString());
-		image = new Image(stream);
+		fileImage = new Image(stream);
+		fileName = file.getName();
 		
-		imageName = file.getName();
+		//unique
 		caption = "";
 		tags = new LinkedList<String[]>();
 		calendar = calendar.getInstance();
@@ -43,12 +43,6 @@ public class Photo {
 	}
 	
 	/*Get Methods*/
-	public Image getImage() {
-		return image;
-	}
-	public String getImageName() {
-		return imageName;
-	}
 	public Date getDate() {
 		return calendar.getTime();
 	}

@@ -2,7 +2,6 @@ package FXMLcontrollers;
 
 import java.io.File;
 import java.io.FileInputStream;
-import objects.Photo;
 
 import javafx.collections.ObservableMap;
 import javafx.event.ActionEvent;
@@ -13,6 +12,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.media.Media;
+import ourFilesTM.Photo;
 
 public class photoEnhance {
 	@FXML public ImageView ImageViewer;

@@ -1,13 +1,21 @@
-package objects;
+package ourFilesTM;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
 
-public class Album {
-	private String name;
+import javafx.scene.image.Image;
+
+public class Album extends FileTM{
 	private ArrayList<Object> directory;
-	public Album (String name) {
-		this.name = name;
+	public Album (String fileName) {
+		//Inherited items
+		this.fileName = fileName;
+		String curDir = System.getProperty("user.dir");
+		fileImage = new Image(
+			curDir + "/src/userPage/folderIcon.png"
+		);
+		
+		//unique
 		directory = new ArrayList<Object>();
 	}
 	
@@ -21,7 +29,7 @@ public class Album {
 		//Dir := Directory
 		return directory;
 	}
-	public Object getItem (int i) {
+	public Object getFile (int i) {
 		return directory.get(i);
 	}
 }

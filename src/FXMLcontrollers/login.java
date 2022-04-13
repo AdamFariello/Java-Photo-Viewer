@@ -9,6 +9,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import ourFilesTM.Album;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import general.profileList;
@@ -35,15 +36,26 @@ public class login {
 					adminPage.init(profileList);
 					break;
 				default: 
-					/*TODO setup photoEnhance to folderView*/
 					FXMLLoader = new FXMLLoader(
-						//getClass().getResource("../FXML/userPage.fxml")
-						getClass().getResource("../FXML/photoEnhance.fxml")	
+						getClass().getResource("../FXML/userPage.fxml")
+						//getClass().getResource("../FXML/photoEnhance.fxml")	
 					);
 					root = FXMLLoader.load();
 					
 					userPage userPage = new userPage();
+					/*TODO implement serialization method
+					Album album = File.unserialzed();
+					if (album != null) {
+						userPage.init(file, album);
+					} else {
+						userPage.init(file);
+					}
+					
+					userPage userPage = new userPage();
 					userPage.init(file);
+					*/
+					userPage.init(file);
+					
 					break;
 			}
 

@@ -4,22 +4,56 @@ import java.io.File;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import objects.Album;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.layout.FlowPane;
+import javafx.stage.Stage;
+import ourFilesTM.Album;
+import ourFilesTM.Photo;
 
 public class userPage {
 	@FXML public FlowPane FlowPane;
-	Album root;
+	private File file;
+	private Album root;
 	
-	public void init(File file) {
+	/*Initializing*/
+	public void init(File file) throws Exception{
 		//User has been created for the first
 		//time and requires a root directory
+		this.file = file;
 		root = new Album("/");
+		loadDir();
+	}
+	public void init(File file, Album root) throws Exception{
+		//TODO Work on this when serialization
+		//is setup
+		//User has already used the program
+		this.file = file;
+		this.root = root;
+		loadDir();
 	}
 	
-	public void init(Album root) {
-		//User has already used the program
-		this.root = root;
+	public void loadDir() throws Exception{
+		for (int i = 0; i < root.getDir().size(); i++) {
+			/*Not required?
+			FXMLLoader FXMLLoader = new FXMLLoader(
+				getClass().getResource("../FXML/thumbnail.fxml")
+			);
+			Parent parent = FXMLLoader.load();
+			*/
+			
+			Object object = root.getFile(i); 
+			thumbnail thumbnail = new thumbnail();
+			if (object instanceof Album) {
+				thumbnail.init((Album) object);
+			} else {
+				thumbnail.init((Photo) object);
+			}
+			
+			
+		}
 	}
 	
 	/*Task Bar; Handling buttons in File*/
