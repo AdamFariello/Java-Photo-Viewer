@@ -38,7 +38,6 @@ public class login {
 				default: 
 					FXMLLoader = new FXMLLoader(
 						getClass().getResource("../FXML/userPage.fxml")
-						//getClass().getResource("../FXML/photoEnhance.fxml")	
 					);
 					root = FXMLLoader.load();
 					

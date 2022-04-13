@@ -37,7 +37,7 @@ public class userPage {
 	
 	public void loadDir() throws Exception{
 		for (int i = 0; i < root.getDir().size(); i++) {
-			/*Not required?
+			/*TODO Not required?
 			FXMLLoader FXMLLoader = new FXMLLoader(
 				getClass().getResource("../FXML/thumbnail.fxml")
 			);
