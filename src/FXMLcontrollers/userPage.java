@@ -2,6 +2,7 @@ package FXMLcontrollers;
 
 import java.io.File;
 
+import general.Serialize;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -31,11 +32,10 @@ public class userPage {
 		//User has been created for the first
 		//time and requires a root directory
 		this.file = file;
-		root = new Album("/");
+		root = new Album("root");
 		loadDir();
 	}
 	public void init(File file, Album root) throws Exception{
-		//TODO Work on this when serialization
 		//is setup
 		//User has already used the program
 		this.file = file;
@@ -51,54 +51,31 @@ public class userPage {
 			Photo photo = new Photo(files[i]);
 			root.addFile(photo);
 		}
-		
+			
+		Serialize<GridPane> serialize = new Serialize<GridPane>();
+		GridPane currGridPane = serialize.deepCopy(gridPane);
 		for (int i = 0; i < root.getDir().size(); i++) {
 			if (i % 5 == 0 && i != 0) {
-				
+				vbox.getChildren().add(currGridPane);
+				currGridPane = serialize.deepCopy(gridPane); 
 			}
 			
 			Object object = root.getFile(i);
-			VBox vbox = new VBox(); 
-			//vbox.setPrefWidth(10);
-			//vbox.setPrefHeight(10);
+			VBox vbox_temp = new VBox(); 
+			
 			if (object instanceof Album) {
 				Album album 	 	= (Album) object;
 				ImageView imageview = new ImageView(album.getFileImage());
 				Label label 		= new Label(album.getFileName());
-				vbox.getChildren().addAll(imageview, label);
+				vbox_temp.getChildren().addAll(imageview, label);
 			} else {
 				System.out.println(object);
 				Photo photo 		= (Photo) object;
 				ImageView imageview = new ImageView(photo.getFileImage());
 				Label label 		= new Label(photo.getFileName());
-				vbox.getChildren().addAll(imageview, label);
+				vbox_temp.getChildren().addAll(imageview, label);
 			}
-			FlowPane.getChildren().add(vbox);
 		}
-		
-		/*
-		//ObservableList list = FlowPane.getChildren();
-		//FlowPane.setMargin(vbox, new Insets(20, 0, 20, 20));
-		for (int i = 0; i < root.getDir().size(); i++) {
-			Object object = root.getFile(i);
-			VBox vbox = new VBox(); 
-			//vbox.setPrefWidth(10);
-			//vbox.setPrefHeight(10);
-			if (object instanceof Album) {
-				Album album 	 	= (Album) object;
-				ImageView imageview = new ImageView(album.getFileImage());
-				Label label 		= new Label(album.getFileName());
-				vbox.getChildren().addAll(imageview, label);
-			} else {
-				System.out.println(object);
-				Photo photo 		= (Photo) object;
-				ImageView imageview = new ImageView(photo.getFileImage());
-				Label label 		= new Label(photo.getFileName());
-				vbox.getChildren().addAll(imageview, label);
-			}
-			FlowPane.getChildren().add(vbox);
-		}
-		*/
 	}	
 	
 	/*Task Bar; Handling buttons in File*/

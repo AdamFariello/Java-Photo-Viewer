@@ -1,6 +1,8 @@
 package general;
 
+import java.io.File;
 import java.net.URL;
+import java.util.LinkedList;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
