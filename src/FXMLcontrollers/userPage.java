@@ -21,8 +21,8 @@ import ourFilesTM.Album;
 import ourFilesTM.Photo;
 
 public class userPage {
-	@FXML VBox vbox; 
-	@FXML GridPane gridPane;
+	@FXML private VBox vbox; 
+	@FXML private GridPane gridPane;
 	
 	private File file;
 	private Album root;
@@ -51,10 +51,11 @@ public class userPage {
 			Photo photo = new Photo(files[i]);
 			root.addFile(photo);
 		}
-			
+		
 		Serialize<GridPane> serialize = new Serialize<GridPane>();
 		GridPane currGridPane = serialize.deepCopy(gridPane);
-		for (int i = 0; i < root.getDir().size(); i++) {
+		int i;
+		for (i = 0; i < root.getDir().size(); i++) {
 			if (i % 5 == 0 && i != 0) {
 				vbox.getChildren().add(currGridPane);
 				currGridPane = serialize.deepCopy(gridPane); 
@@ -69,13 +70,16 @@ public class userPage {
 				Label label 		= new Label(album.getFileName());
 				vbox_temp.getChildren().addAll(imageview, label);
 			} else {
-				System.out.println(object);
 				Photo photo 		= (Photo) object;
 				ImageView imageview = new ImageView(photo.getFileImage());
 				Label label 		= new Label(photo.getFileName());
 				vbox_temp.getChildren().addAll(imageview, label);
 			}
+			currGridPane.add(vbox_temp, 0, i%5);
 		}
+		if (i%5 != 0)
+			vbox.getChildren().add(currGridPane);
+		
 	}	
 	
 	/*Task Bar; Handling buttons in File*/

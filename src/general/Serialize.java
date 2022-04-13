@@ -21,6 +21,7 @@ public class Serialize <T> implements Serializable{
 	public Serialize(File profile) {
 		this.profile = profile;
 	}
+	@SuppressWarnings("unchecked")
 	public T deepCopy(T t) {
 		//TODO Make these process their own methods
 		while(lock.isLocked());
@@ -39,6 +40,8 @@ public class Serialize <T> implements Serializable{
 			);
 	        ObjectInputStream objectInputStream = new ObjectInputStream(bais);
 	        t2 = (T) objectInputStream.readObject();
+	        System.out.println(t);
+	        System.out.println(t2);
 		} catch (Exception e) {
 			System.out.println("[DEBUG] Error in serializeAlt.serialize");
 			System.out.println(e);
@@ -73,8 +76,9 @@ public class Serialize <T> implements Serializable{
 			);
 			return (T) ois.readObject();
 		} catch (Exception e) {
-			System.out.println("[DEBUG] Serialize.deserialize");
-			System.out.println(e);
+			//Catches empty list or bad serializations
+			//System.out.println("[DEBUG] Serialize.deserialize");
+			//System.out.println(e);
 		}
 		lock.unlock();
 		return null;

@@ -1,11 +1,13 @@
 package ourFilesTM;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.LinkedList;
 
 import javafx.scene.image.Image;
 
-public class Album extends FileTM{
+public class Album extends FileTM {
+	private static final long serialVersionUID = 2324073439905412687L;
 	private ArrayList<Object> directory;
 	public Album (String fileName) {
 		//Inherited items
