@@ -12,15 +12,15 @@ public class Album extends FileTM{
 		this.fileName = fileName;
 		String curDir = System.getProperty("user.dir");
 		fileImage = new Image(
-			curDir + "/src/userPage/folderIcon.png"
-		);
+			"file: " + curDir + "/src/ourFilesTM/folderIcon.png"
+		);	
 		
 		//unique
 		directory = new ArrayList<Object>();
 	}
 	
 	/*Sets*/
-	public void addSubFile (Object object) {
+	public void addFile (Object object) {
 		directory.add(object);
 	}
 	

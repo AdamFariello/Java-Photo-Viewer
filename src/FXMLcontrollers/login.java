@@ -41,7 +41,7 @@ public class login {
 					);
 					root = FXMLLoader.load();
 					
-					userPage userPage = new userPage();
+					userPage userPage = FXMLLoader.getController();
 					/*TODO implement serialization method
 					Album album = File.unserialzed();
 					if (album != null) {

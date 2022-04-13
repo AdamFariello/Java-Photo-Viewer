@@ -1,3 +1,4 @@
+ 
 package FXMLcontrollers;
 
 import javafx.event.ActionEvent;
@@ -13,20 +14,28 @@ public class thumbnail {
 	@FXML public Label label;
 	@FXML public ImageView imageview;
 	@FXML public Pane pane;
-	
+
 	public void init (Album album) {
-		imageview.setImage(album.getFileImage());
-		label.setText(album.getFileName());
+		//label.setText(album.getFileName());
+		//imageview.setImage(album.getFileImage());
+		
+		label = new Label(album.getFileName());
+		imageview = new ImageView(album.getFileImage());
+		pane.getChildren().addAll(label, imageview);
 	}
 	public void init (Photo photo) {
-		imageview.setImage(photo.getFileImage());
-		label.setText(photo.getFileName());
-	}
+		//label.setText(photo.getFileName());
+		//imageview.setImage(photo.getFileImage());
 	
+		label = new Label(photo.getFileName());
+		imageview = new ImageView(photo.getFileImage());
+		pane.getChildren().addAll(label, imageview);
+	}
+
 	@FXML public void imageClicked (ActionEvent event) {
 		System.out.println("test:");
 	}
-	
+
 	public Pane getPane() {
 		return pane;
 	}

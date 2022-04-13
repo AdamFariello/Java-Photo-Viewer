@@ -42,6 +42,6 @@
             <Button alignment="CENTER" mnemonicParsing="false" onAction="#logout" text="logout" />
         </items>
       </ToolBar>
-      <FlowPane prefHeight="399.0" prefWidth="661.0" />
+      <FlowPane fx:id="FlowPane" prefHeight="399.0" prefWidth="661.0" />
    </children>
 </VBox>

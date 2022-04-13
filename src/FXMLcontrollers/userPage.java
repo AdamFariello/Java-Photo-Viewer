@@ -8,7 +8,10 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import ourFilesTM.Album;
 import ourFilesTM.Photo;
@@ -35,26 +38,36 @@ public class userPage {
 		loadDir();
 	}
 	
-	public void loadDir() throws Exception{
-		for (int i = 0; i < root.getDir().size(); i++) {
-			/*TODO Not required?
-			FXMLLoader FXMLLoader = new FXMLLoader(
-				getClass().getResource("../FXML/thumbnail.fxml")
-			);
-			Parent parent = FXMLLoader.load();
-			*/
-			
-			Object object = root.getFile(i); 
-			thumbnail thumbnail = new thumbnail();
-			if (object instanceof Album) {
-				thumbnail.init((Album) object);
-			} else {
-				thumbnail.init((Photo) object);
-			}
-			
-			
+	public void loadDir() throws Exception {
+		String dirPath = System.getProperty("user.dir");
+		File dir = new File(dirPath + "/stockPhotos");
+		File[] files = dir.listFiles();
+		for (int i = 0; i < files.length; i++) {
+			Photo photo = new Photo(files[i]);
+			root.addFile(photo);
 		}
-	}
+
+		//This is for testing if instanceof works
+		Object object;
+		//for (int i = 0; (object = root.getFile(i)) != null; i++) {
+		for (int i = 0; i < root.getDir().size(); i++) {
+			object = root.getFile(i);
+			VBox vbox = new VBox(); 
+			if (object instanceof Album) {
+				Album album 	 	= (Album) object;
+				ImageView imageview = new ImageView(album.getFileImage());
+				Label label 		= new Label(album.getFileName());
+				vbox.getChildren().addAll(imageview, label);
+			} else {
+				System.out.println(object);
+				Photo photo 		= (Photo) object;
+				ImageView imageview = new ImageView(photo.getFileImage());
+				Label label 		= new Label(photo.getFileName());
+				vbox.getChildren().addAll(imageview, label);
+			}
+			FlowPane.getChildren().add(vbox);
+		}
+	}	
 	
 	/*Task Bar; Handling buttons in File*/
 	@FXML public void file_CreateAlbum (ActionEvent Event) {
@@ -90,3 +103,36 @@ public class userPage {
 		//TODO Add functionality
 	}
 }
+
+//Scrap Code
+/*
+for (int i = 0; i < root.getDir().size(); i++) {
+	//TODO Not required?
+	FXMLLoader FXMLLoader = new FXMLLoader(
+		getClass().getResource("../FXML/thumbnail.fxml")
+	);
+	Parent parent = FXMLLoader.load();
+	
+	Object object = root.getFile(i); 
+	thumbnail thumbnail = new thumbnail();
+	if (object instanceof Album) {
+		thumbnail.init((Album) object);
+	} else {
+		thumbnail.init((Photo) object);
+	}	
+}
+
+
+FXMLLoader FXMLLoader = new FXMLLoader(
+		getClass().getResource("../FXML/thumbnail.fxml")
+	);
+	FXMLLoader.load();
+	
+	thumbnail thumbnail = new thumbnail();
+	if (object instanceof Album) {
+		thumbnail.init((Album) object);
+	} else {
+		thumbnail.init((Photo) object);
+	}
+	FlowPane.getChildren().add(thumbnail.getPane());
+*/
