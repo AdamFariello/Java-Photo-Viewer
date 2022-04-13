@@ -8,7 +8,7 @@ import java.util.LinkedList;
 
 import javafx.scene.image.Image;
 
-public class photo {
+public class Photo {
 	//The reason why the tags are String is that 
 	//the tag data will be given as: "person:Ana person:Albert".
 	//Two split methods can be applied, hence the tag. 
@@ -18,7 +18,7 @@ public class photo {
 	private LinkedList<String[]> tags;
 	private Calendar calendar;
 	
-	public photo (File file) throws Exception{
+	public Photo (File file) throws Exception{
 		FileInputStream stream = new FileInputStream(file.toString());
 		image = new Image(stream);
 		

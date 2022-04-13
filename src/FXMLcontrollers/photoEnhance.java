@@ -2,7 +2,7 @@ package FXMLcontrollers;
 
 import java.io.File;
 import java.io.FileInputStream;
-import objects.photo;
+import objects.Photo;
 
 import javafx.collections.ObservableMap;
 import javafx.event.ActionEvent;
@@ -20,7 +20,7 @@ public class photoEnhance {
 	@FXML public TextArea tf_caption;
 	@FXML public TextArea tf_tags;
 	
-	public void loadPhoto (photo photo) throws Exception {
+	public void loadPhoto (Photo photo) throws Exception {
 		ImageViewer.setImage(photo.getImage());
 		lb_Name.setText(photo.getImageName());
 		tf_caption.setText(photo.getCaption());

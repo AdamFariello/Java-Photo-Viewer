@@ -11,7 +11,7 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="492.0" prefWidth="661.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="492.0" prefWidth="661.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="FXMLcontrollers.userPage">
    <children>
       <ToolBar prefHeight="27.0" prefWidth="661.0">
         <items>
@@ -19,27 +19,27 @@
               <menus>
                   <Menu mnemonicParsing="false" text="File">
                      <items>
-                    <MenuItem mnemonicParsing="false" text="Create Album" />
-                    <MenuItem mnemonicParsing="false" text="Add Photo" />
-                        <MenuItem mnemonicParsing="false" text="Delete Selected" />
+                    <MenuItem mnemonicParsing="false" onAction="#file_CreateAlbum" text="Create Album" />
+                    <MenuItem mnemonicParsing="false" onAction="#file_AddPhoto" text="Add Photo" />
+                        <MenuItem mnemonicParsing="false" onAction="#file_DeleteSelected" text="Delete Selected" />
                      </items>
                   </Menu>
               </menus>
             </MenuBar>
             <Line endX="-99.37867736816406" endY="38.19041061401367" opacity="0.52" startX="-100.0" />
-            <Button mnemonicParsing="false" text="rename" />
-            <Button mnemonicParsing="false" text="edit Photo" />
-          <Button mnemonicParsing="false" text="view Photo" />
-            <Button mnemonicParsing="false" text="search Photo" />
+            <Button mnemonicParsing="false" onAction="#rename" text="rename" />
+            <Button mnemonicParsing="false" onAction="#editPhoto" text="edit Photo" />
+          <Button mnemonicParsing="false" onAction="#viewPhoto" text="view Photo" />
+            <Button mnemonicParsing="false" onAction="#searchPhoto" text="search Photo" />
             <Line endX="-99.37867736816406" endY="38.19041061401367" opacity="0.52" startX="-100.0" stroke="#000000c9" />
-            <Button mnemonicParsing="false" text="&lt;" />
-            <Button mnemonicParsing="false" text="&gt;" />
+            <Button mnemonicParsing="false" onAction="#scrollLeft" text="&lt;" />
+            <Button mnemonicParsing="false" onAction="#scrollRight" text="&gt;" />
             <Label prefHeight="19.0" prefWidth="100.0" text="space" textFill="TRANSPARENT">
                <font>
                   <Font size="1.0" />
                </font>
             </Label>
-            <Button alignment="CENTER" mnemonicParsing="false" text="logout" />
+            <Button alignment="CENTER" mnemonicParsing="false" onAction="#logout" text="logout" />
         </items>
       </ToolBar>
       <FlowPane prefHeight="399.0" prefWidth="661.0" />

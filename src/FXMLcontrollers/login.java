@@ -12,6 +12,7 @@ import javafx.stage.Stage;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import general.profileList;
+import FXMLcontrollers.*;
 
 public class login {
 	@FXML private TextField TextField_login;
@@ -41,11 +42,8 @@ public class login {
 					);
 					root = FXMLLoader.load();
 					
-					File loadFile = new File(
-						"/home/adamf/code_Environments/Eclipse/Workspace.Rutgers/213/photos/stockPhotos/5.JPG/"
-					);
-					photoEnhance photoEnhance = FXMLLoader.getController();
-					photoEnhance.loadImage(loadFile);
+					userPage userPage = new userPage();
+					userPage.init(file);
 					break;
 			}
 
