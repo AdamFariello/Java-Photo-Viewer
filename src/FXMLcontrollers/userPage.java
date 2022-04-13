@@ -2,22 +2,27 @@ package FXMLcontrollers;
 
 import java.io.File;
 
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import ourFilesTM.Album;
 import ourFilesTM.Photo;
 
 public class userPage {
-	@FXML public FlowPane FlowPane;
+	@FXML VBox vbox; 
+	@FXML GridPane gridPane;
+	
 	private File file;
 	private Album root;
 	
@@ -46,13 +51,16 @@ public class userPage {
 			Photo photo = new Photo(files[i]);
 			root.addFile(photo);
 		}
-
-		//This is for testing if instanceof works
-		Object object;
-		//for (int i = 0; (object = root.getFile(i)) != null; i++) {
+		
 		for (int i = 0; i < root.getDir().size(); i++) {
-			object = root.getFile(i);
+			if (i % 5 == 0 && i != 0) {
+				
+			}
+			
+			Object object = root.getFile(i);
 			VBox vbox = new VBox(); 
+			//vbox.setPrefWidth(10);
+			//vbox.setPrefHeight(10);
 			if (object instanceof Album) {
 				Album album 	 	= (Album) object;
 				ImageView imageview = new ImageView(album.getFileImage());
@@ -67,6 +75,30 @@ public class userPage {
 			}
 			FlowPane.getChildren().add(vbox);
 		}
+		
+		/*
+		//ObservableList list = FlowPane.getChildren();
+		//FlowPane.setMargin(vbox, new Insets(20, 0, 20, 20));
+		for (int i = 0; i < root.getDir().size(); i++) {
+			Object object = root.getFile(i);
+			VBox vbox = new VBox(); 
+			//vbox.setPrefWidth(10);
+			//vbox.setPrefHeight(10);
+			if (object instanceof Album) {
+				Album album 	 	= (Album) object;
+				ImageView imageview = new ImageView(album.getFileImage());
+				Label label 		= new Label(album.getFileName());
+				vbox.getChildren().addAll(imageview, label);
+			} else {
+				System.out.println(object);
+				Photo photo 		= (Photo) object;
+				ImageView imageview = new ImageView(photo.getFileImage());
+				Label label 		= new Label(photo.getFileName());
+				vbox.getChildren().addAll(imageview, label);
+			}
+			FlowPane.getChildren().add(vbox);
+		}
+		*/
 	}	
 	
 	/*Task Bar; Handling buttons in File*/
