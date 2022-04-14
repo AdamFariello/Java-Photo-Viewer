@@ -7,17 +7,23 @@ import javafx.scene.Node;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import ourFilesTM.Album;
+import ourFilesTM.Photo;
 
 public class userPage_fileRename {
 	@FXML private TextField TextField;
-	private Album currDir;
 	private Object object;
-	public void init(Album currDir, Object object) {
-		this.currDir = currDir;
+	public void init(Object object) {
 		this.object = object;
 	}
-	@FXML private void create(ActionEvent event) {
-		currDir.getFile(object);
+	@FXML private void rename(ActionEvent event) {
+		if (object instanceof Photo) {
+			Photo photo = (Photo) object;
+			photo.setFileName(TextField.getText());
+		
+		} else {
+			Album album = (Album) object;
+			album.setFileName(TextField.getText());
+		}
 		exit(event);
 	}
 	@FXML private void exit(ActionEvent event) {

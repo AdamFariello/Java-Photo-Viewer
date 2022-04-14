@@ -9,7 +9,7 @@
    <children>
       <Label layoutX="58.0" layoutY="43.0" prefHeight="19.0" prefWidth="124.0" text="Change Name to:" />
       <TextField fx:id="TextField" layoutX="39.0" layoutY="63.0" />
-      <Button layoutX="55.0" layoutY="109.0" mnemonicParsing="false" onAction="#create" text="create" />
+      <Button layoutX="55.0" layoutY="109.0" mnemonicParsing="false" onAction="#rename" text="rename" />
       <Button layoutX="137.0" layoutY="111.0" mnemonicParsing="false" onAction="#exit" text="exit" />
    </children>
 </AnchorPane>

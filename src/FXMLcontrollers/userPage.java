@@ -3,6 +3,7 @@ package FXMLcontrollers;
 import java.awt.Desktop;
 import java.io.File;
 import java.util.Optional;
+import java.util.Stack;
 
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileNameExtensionFilter;
@@ -40,6 +41,7 @@ public class userPage {
 	private Album currDir;
 	private ColorAdjust selectedFileColor;
 	private Object selectedFile;
+	private Stack<Album> previousDirs;
 	
 	/*Initializing*/
 	/**
@@ -54,6 +56,7 @@ public class userPage {
 		currDir 		  = new Album("root");
 		selectedFileColor = null;
 		selectedFile 	  = null;
+		previousDirs	  = null;
 		
 		if (profile.getName().equals("stock.txt")) {
 			String dirPath = System.getProperty("user.dir");
@@ -80,6 +83,7 @@ public class userPage {
 		this.currDir 	  = root;
 		selectedFileColor = null;
 		selectedFile 	  = null;
+		previousDirs 	  = null
 		loadDir();
 	}
 	/**
@@ -219,7 +223,8 @@ public class userPage {
 			Alert alert = new Alert(AlertType.WARNING);
 			alert.setTitle("No file selected");
 			alert.setHeaderText("Select a file if you wish to delete it");
-		
+			alert.show();
+			
 		} else {
 			Alert alert = new Alert(AlertType.CONFIRMATION);
 			alert.setTitle("Confirmation");
@@ -240,39 +245,66 @@ public class userPage {
 	 * method to open photo
 	 * @param event
 	 */
-	@FXML public void open (ActionEvent event) {
-		/*
-		FXMLLoader FXMLLoader = new FXMLLoader(
-			getClass().getResource("../FXML/searchPhoto.fxml")
-		);
-		Parent root = FXMLLoader.load();
-		searchPhoto searchPhoto = FXMLLoader.getController();
-		searchPhoto.init();
-		Scene scene = new Scene(root);
-		Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-		stage.setScene(scene);
-		stage.setResizable(false);
-		stage.show();
-		*/
+	@FXML public void open (ActionEvent event) throws Exception {
+		//TODO
+		if (selectedFile == null) {
+			Alert alert = new Alert(AlertType.WARNING);
+			alert.setTitle("No file selected");
+			alert.setHeaderText("Select a file if you wish to rename it");
+			alert.show();
+		} else {
+			if (selectedFile instanceof Photo) {
+				Photo photo = (Photo) selectedFile;
+				
+				FXMLLoader FXMLLoader = new FXMLLoader(
+					getClass().getResource("../FXML/photoEnhance.fxml")
+				);
+				Parent root = FXMLLoader.load();
+				photoEnhance photoEnhance = FXMLLoader.getController();
+				photoEnhance.loadPhoto(photo);
+				
+				Scene scene = new Scene(root);
+				Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+				stage.setScene(scene);
+				stage.setResizable(false);
+				stage.show();
+				
+			} else {
+				Album album = (Album) selectedFile;
+				previousDirs.push(currDir);
+				currDir = album;
+				vbox.getChildren().clear();
+				loadDir();
+			}
+		}
 	}
 	/**
 	 * method to rename
 	 * @param event
 	 */
-	@FXML public void rename (ActionEvent event) {
-		/*
-		FXMLLoader FXMLLoader = new FXMLLoader(
-			getClass().getResource("../FXML/searchPhoto.fxml")
-		);
-		Parent root = FXMLLoader.load();
-		searchPhoto searchPhoto = FXMLLoader.getController();
-		searchPhoto.init();
-		Scene scene = new Scene(root);
-		Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-		stage.setScene(scene);
-		stage.setResizable(false);
-		stage.show();
-		*/
+	@FXML public void rename (ActionEvent event) throws Exception{
+		if (selectedFile != null) {
+			FXMLLoader FXMLLoader = new FXMLLoader(
+				getClass().getResource("../FXML/userPage_fileRename.fxml")
+			);
+			Parent root = FXMLLoader.load();
+			userPage_fileRename userPage_fileRename = FXMLLoader.getController();
+			userPage_fileRename.init(selectedFile);
+			Scene scene = new Scene(root);
+			Stage stage = new Stage();
+			stage.setScene(scene);
+			stage.setResizable(false);
+			stage.show();
+			
+			vbox.getChildren().clear();
+			loadDir();
+		} else {
+			Alert alert = new Alert(AlertType.WARNING);
+			alert.setTitle("No file selected");
+			alert.setHeaderText("Select a file if you wish to rename it");
+			alert.show();
+		}
+			
 	}	
 	
 	/**
@@ -280,7 +312,6 @@ public class userPage {
 	 * @param event
 	 */
 	@FXML public void editPhoto (ActionEvent event) {
-		//TODO
 		/*
 		FXMLLoader FXMLLoader = new FXMLLoader(
 			getClass().getResource("../FXML/searchPhoto.fxml")
@@ -300,7 +331,8 @@ public class userPage {
 	 * @param event
 	 */
 	@FXML public void searchPhoto (ActionEvent event) {
-		/* TODO proper evaluation
+		/*
+		// TODO proper evaluation
 		FXMLLoader FXMLLoader = new FXMLLoader(
 			getClass().getResource("../FXML/searchPhoto.fxml")
 		);
