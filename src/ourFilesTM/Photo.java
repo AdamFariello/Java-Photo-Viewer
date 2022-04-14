@@ -2,6 +2,7 @@ package ourFilesTM;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.Serializable;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.LinkedList;
@@ -12,13 +13,15 @@ import javafx.scene.image.Image;
  * @author Edison & adam
  *
  */
-public class Photo extends FileTM{
+
+public class Photo extends FileTM implements Serializable{
 	//The reason why the tags are String is that 
 	//the tag data will be given as: "person:Ana person:Albert".
 	//Two split methods can be applied, hence the tag. 
 	private String caption;
 	private LinkedList<String[]> tags;
 	private Calendar calendar;
+
 	/**
 	 * gets name /  image from file
 	 * @param file
@@ -26,9 +29,8 @@ public class Photo extends FileTM{
 	 */
 	public Photo (File file) throws Exception{
 		//Inherited
-		FileInputStream stream = new FileInputStream(file.toString());
-		fileImage = new Image(stream);
 		fileName = file.getName();
+		imageFile = file;
 		
 		//unique
 		caption = "";

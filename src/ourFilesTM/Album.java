@@ -1,16 +1,20 @@
 package ourFilesTM;
 
+import java.io.File;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.LinkedList;
 
 import javafx.scene.image.Image;
+
 /**
  * album class
  * @author Edison & adam
  * 
  *
  */
-public class Album extends FileTM{
+public class Album extends FileTM implements Serializable {
+	private static final long serialVersionUID = 2324073439905412687L;
 	private ArrayList<Object> directory;
 	/**
 	 * creates album
@@ -20,8 +24,8 @@ public class Album extends FileTM{
 		//Inherited items
 		this.fileName = fileName;
 		String curDir = System.getProperty("user.dir");
-		fileImage = new Image(
-			"file: " + curDir + "/src/ourFilesTM/folderIcon.png"
+		imageFile = new File(
+			curDir + "/src/ourFilesTM/folderIcon.png"
 		);	
 		
 		//unique
