@@ -1,20 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ButtonBar?>
-<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.ToolBar?>
 <?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
    <center>
       <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
          <children>
@@ -26,9 +25,9 @@
                         <Font size="1.0" />
                      </font>
                   </Label>
-                  <TextField prefHeight="27.0" prefWidth="145.0" />
+                  <TextField fx:id="fromDate" prefHeight="27.0" prefWidth="145.0" />
                   <Label text=" -&gt; " />
-                  <TextField prefHeight="27.0" prefWidth="145.0" />
+                  <TextField fx:id="toDate" prefHeight="27.0" prefWidth="145.0" />
                </children>
             </HBox>
             <HBox prefHeight="29.0" prefWidth="584.0">
@@ -39,45 +38,45 @@
                         <Font size="1.0" />
                      </font>
                   </Label>
-                  <TextField prefHeight="27.0" prefWidth="145.0" text="Title of tag" />
+                  <TextField fx:id="tag1" prefHeight="27.0" prefWidth="145.0" text="Title of tag" />
                   <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="29.0" prefWidth="16.0" text=":" textAlignment="CENTER" />
-                  <TextField prefHeight="27.0" prefWidth="145.0" />
+                  <TextField fx:id="tag2" prefHeight="27.0" prefWidth="145.0" />
                </children>
             </HBox>
-            <HBox prefHeight="22.0" prefWidth="584.0">
+            <HBox prefHeight="22.0" prefWidth="584.0" />
+            <HBox prefHeight="30.0" prefWidth="584.0">
                <children>
-                  <CheckBox mnemonicParsing="false" text="using another tag" />
+                  <Label prefHeight="29.0" prefWidth="16.0" text="space" textFill="TRANSPARENT">
+                     <font>
+                        <Font size="1.0" />
+                     </font>
+                  </Label>
+                  <RadioButton fx:id="andRadio" mnemonicParsing="false" text="AND" />
+                  <RadioButton fx:id="orRadio" mnemonicParsing="false" text="OR" />
+                  <Label prefHeight="19.0" prefWidth="161.0" text="Can add one or two tags">
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                     <HBox.margin>
+                        <Insets left="150.0" />
+                     </HBox.margin>
+                  </Label>
                </children>
             </HBox>
-            <VBox prefHeight="200.0" prefWidth="100.0">
+            <HBox prefHeight="23.0" prefWidth="584.0">
                <children>
-                  <HBox prefHeight="23.0" prefWidth="584.0">
-                     <children>
-                        <RadioButton mnemonicParsing="false" text="AND" />
-                        <Label prefHeight="29.0" prefWidth="16.0" text="space" textFill="TRANSPARENT">
-                           <font>
-                              <Font size="1.0" />
-                           </font>
-                        </Label>
-                        <RadioButton mnemonicParsing="false" text="OR" />
-                     </children>
-                  </HBox>
-                  <HBox prefHeight="30.0" prefWidth="584.0">
-                     <children>
-                        <Label prefHeight="19.0" prefWidth="79.0" text="Tag" />
-                        <Label prefHeight="29.0" prefWidth="16.0" text="space" textFill="TRANSPARENT">
-                           <font>
-                              <Font size="1.0" />
-                           </font>
-                        </Label>
-                        <TextField prefHeight="27.0" prefWidth="145.0" text="Title of tag" />
-                        <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="29.0" prefWidth="16.0" text=":" textAlignment="CENTER" />
-                        <TextField prefHeight="27.0" prefWidth="145.0" />
-                     </children>
-                  </HBox>
+                  <Label prefHeight="29.0" prefWidth="16.0" text="space" textFill="TRANSPARENT">
+                     <font>
+                        <Font size="1.0" />
+                     </font>
+                  </Label>
                </children>
-            </VBox>
-            <FlowPane prefHeight="354.0" prefWidth="584.0" />
+            </HBox>
+            <ScrollPane prefHeight="200.0" prefWidth="200.0">
+               <content>
+                  <VBox fx:id="vbox" prefHeight="200.0" prefWidth="552.0" />
+               </content>
+            </ScrollPane>
          </children>
       </VBox>
    </center>
@@ -85,10 +84,9 @@
       <HBox alignment="CENTER" prefHeight="30.0" prefWidth="600.0" BorderPane.alignment="CENTER">
          <children>
             <ButtonBar prefHeight="40.0" prefWidth="200.0">
-              <buttons>
-                  <Button alignment="CENTER" mnemonicParsing="false" text="Search" />
-                  <Button alignment="CENTER" mnemonicParsing="false" text="Exit" />
-              </buttons>
+               <buttons>
+                  <Button fx:id="searchButton" alignment="CENTER" mnemonicParsing="false" onAction="#searchPhotos" prefHeight="27.0" prefWidth="283.0" text="Search" />
+               </buttons>
             </ButtonBar>
          </children>
       </HBox>
@@ -96,24 +94,17 @@
    <right>
       <Label prefHeight="19.0" prefWidth="15.0" BorderPane.alignment="CENTER" />
    </right>
-   <left>
-      <Label prefHeight="19.0" prefWidth="15.0" BorderPane.alignment="CENTER" />
-   </left>
    <top>
       <ToolBar prefHeight="31.0" prefWidth="600.0" BorderPane.alignment="CENTER">
          <items>
-            <Button mnemonicParsing="false" text="exit" />
-            <Line endX="-99.37867736816406" endY="38.19041061401367" opacity="0.52" startX="-100.0" />
-            <Button mnemonicParsing="false" text="view Photo" />
-            <Line endX="-99.37867736816406" endY="38.19041061401367" opacity="0.52" startX="-100.0" stroke="#000000c9" />
-            <Button mnemonicParsing="false" text="&lt;" />
-            <Button mnemonicParsing="false" text="&gt;" />
-            <Label prefHeight="28.0" prefWidth="301.0" text="space" textFill="TRANSPARENT">
+            <Button mnemonicParsing="false" onAction="#exitPage" text="exit" />
+            <Button mnemonicParsing="false" onAction="#viewPhoto" text="view Photo" />
+            <Label prefHeight="29.0" prefWidth="383.0" text="space" textFill="TRANSPARENT">
                <font>
                   <Font size="1.0" />
                </font>
             </Label>
-            <Button alignment="CENTER" mnemonicParsing="false" text="logout" />
+            <Button alignment="CENTER" mnemonicParsing="false" onAction="#logout" text="logout" />
          </items>
       </ToolBar>
    </top>
