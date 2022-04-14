@@ -1,6 +1,7 @@
 package FXMLcontrollers;
 
 import java.io.File;
+import java.util.ArrayList;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -12,6 +13,7 @@ import javafx.stage.Stage;
 import ourFilesTM.Album;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import general.Serialize;
 import general.profileList;
 import FXMLcontrollers.*;
 /**
@@ -45,26 +47,21 @@ public class login {
 					adminPage adminPage = FXMLLoader.getController();
 					adminPage.init(profileList);
 					break;
+				
 				default: 
 					FXMLLoader = new FXMLLoader(
 						getClass().getResource("../FXML/userPage.fxml")
 					);
 					root = FXMLLoader.load();
-					
 					userPage userPage = FXMLLoader.getController();
-					/*TODO implement serialization method
-					Album album = File.unserialzed();
+					
+					Serialize<Album> serialize = new Serialize(file);
+					Album album = serialize.deserialize();
 					if (album != null) {
 						userPage.init(file, album);
 					} else {
 						userPage.init(file);
 					}
-					
-					userPage userPage = new userPage();
-					userPage.init(file);
-					*/
-					userPage.init(file);
-					
 					break;
 			}
 

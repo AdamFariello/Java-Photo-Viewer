@@ -2,33 +2,35 @@ package ourFilesTM;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.Serializable;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.LinkedList;
 
 import javafx.scene.image.Image;
 /**
- *  Class for photo
- * @author Edison & adam
+ * Photo Class
+ * @author Edison & Adam
  *
  */
-public class Photo extends FileTM{
+public class Photo extends FileTM implements Serializable{
 	//The reason why the tags are String is that 
 	//the tag data will be given as: "person:Ana person:Albert".
 	//Two split methods can be applied, hence the tag. 
 	private String caption;
 	private LinkedList<String[]> tags;
 	private Calendar calendar;
+	
 	/**
-	 * gets name /  image from file
+	 * Gets file name, image file
+	 * tags, and date of photo
 	 * @param file
 	 * @throws Exception
 	 */
-	public Photo (File file) throws Exception{
+	public Photo (File file) throws Exception {
 		//Inherited
-		FileInputStream stream = new FileInputStream(file.toString());
-		fileImage = new Image(stream);
 		fileName = file.getName();
+		imageFile = file;
 		
 		//unique
 		caption = "";
@@ -39,14 +41,14 @@ public class Photo extends FileTM{
 	
 	/*Sets/Add Methods*/
 	/**
-	 * sets caption to image
+	 * "This" for caption
 	 * @param caption
 	 */
 	public void setCaption(String caption) {
 		this.caption = caption;
 	}
 	/**
-	 * adds tag to image
+	 * "This" method for tags
 	 * @param tags
 	 */
 	public void addTags (String tags) {
@@ -55,7 +57,7 @@ public class Photo extends FileTM{
 			this.tags.add(temp[i].split(":"));
 	}
 	/**
-	 * updates the date
+	 * Method for update
 	 */
 	public void updateDate() {
 		calendar = calendar.getInstance();
@@ -63,14 +65,14 @@ public class Photo extends FileTM{
 	
 	/*Get Methods*/
 	/**
-	 * getter for date
+	 * method to return date
 	 * @return
 	 */
 	public Date getDate() {
 		return calendar.getTime();
 	}
 	/**
-	 * getter for tags
+	 * Getters for tags
 	 * @return
 	 */
 	public String getTags() {
@@ -80,7 +82,7 @@ public class Photo extends FileTM{
 		return string;
 	}
 	/**
-	 * getter for caption
+	 * Getter for caption
 	 * @return
 	 */
 	public String getCaption() {

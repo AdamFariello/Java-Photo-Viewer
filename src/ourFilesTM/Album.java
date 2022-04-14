@@ -1,27 +1,27 @@
 package ourFilesTM;
 
+import java.io.File;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.LinkedList;
 
 import javafx.scene.image.Image;
+
 /**
  * album class
  * @author Edison & adam
  * 
  *
  */
-public class Album extends FileTM{
+public class Album extends FileTM implements Serializable {
+	private static final long serialVersionUID = 2324073439905412687L;
 	private ArrayList<Object> directory;
-	/**
-	 * creates album
-	 * @param fileName
-	 */
 	public Album (String fileName) {
 		//Inherited items
 		this.fileName = fileName;
 		String curDir = System.getProperty("user.dir");
-		fileImage = new Image(
-			"file: " + curDir + "/src/ourFilesTM/folderIcon.png"
+		imageFile = new File(
+			curDir + "/src/ourFilesTM/folderIcon.png"
 		);	
 		
 		//unique
@@ -30,7 +30,7 @@ public class Album extends FileTM{
 	
 	/*Sets*/
 	/**
-	 * adds file
+	 * Mehtod to add File
 	 * @param object
 	 */
 	public void addFile (Object object) {
@@ -39,7 +39,7 @@ public class Album extends FileTM{
 	
 	/*Gets*/
 	/**
-	 * return directory from arraylist
+	 * Getter for directory
 	 * @return
 	 */
 	public ArrayList<Object> getDir() {
@@ -47,7 +47,7 @@ public class Album extends FileTM{
 		return directory;
 	}
 	/**
-	 * returns directories
+	 * method to return certain directory
 	 * @param i
 	 * @return
 	 */

@@ -1,20 +1,25 @@
 package FXMLcontrollers;
 
+import java.awt.Desktop;
 import java.io.File;
 
-import javafx.collections.ObservableList;
+import javax.swing.JFileChooser;
+import javax.swing.filechooser.FileNameExtensionFilter;
+
+import general.Serialize;
+import general.lock;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
+import javafx.stage.FileChooser;
+import javafx.stage.FileChooser.ExtensionFilter;
 import javafx.stage.Stage;
 import ourFilesTM.Album;
 import ourFilesTM.Photo;
@@ -24,11 +29,10 @@ import ourFilesTM.Photo;
  *
  */
 public class userPage {
-	@FXML VBox vbox; 
-	@FXML GridPane gridPane;
+	@FXML private VBox vbox; 
 	
-	private File file;
-	private Album root;
+	private File profile;
+	private Album currDir;
 	
 	
 	/*Initializing*/
@@ -37,11 +41,23 @@ public class userPage {
 	 * @param file
 	 * @throws Exception
 	 */
-	public void init(File file) throws Exception{
+	
+	public void init(File profile) throws Exception{
 		//User has been created for the first
 		//time and requires a root directory
-		this.file = file;
-		root = new Album("/");
+		this.profile = profile;
+		currDir = new Album("root");
+		
+		if (profile.getName().equals("stock.txt")) {
+			String dirPath = System.getProperty("user.dir");
+			File dir = new File(dirPath + "/stockPhotos");
+			File[] files = dir.listFiles();
+			for (int i = 0; i < files.length; i++) {
+				Photo photo = new Photo(files[i]);
+				currDir.addFile(photo);
+			}
+		}
+		
 		loadDir();
 	}
 	/**
@@ -50,12 +66,13 @@ public class userPage {
 	 * @param root
 	 * @throws Exception
 	 */
-	public void init(File file, Album root) throws Exception{
+
 		//TODO Work on this when serialization
+	public void init(File profile, Album root) throws Exception{
 		//is setup
 		//User has already used the program
-		this.file = file;
-		this.root = root;
+		this.profile = profile;
+		this.currDir = root;
 		loadDir();
 	}
 	/**
@@ -63,167 +80,193 @@ public class userPage {
 	 * @throws Exception
 	 */
 	public void loadDir() throws Exception {
-		String dirPath = System.getProperty("user.dir");
-		File dir = new File(dirPath + "/stockPhotos");
-		File[] files = dir.listFiles();
-		for (int i = 0; i < files.length; i++) {
-			Photo photo = new Photo(files[i]);
-			root.addFile(photo);
-		}
-		
-		for (int i = 0; i < root.getDir().size(); i++) {
-			if (i % 5 == 0 && i != 0) {
+		//Presents folder view visual
+		GridPane gridPane = null;
+		for (int i = 0; i < currDir.getDir().size(); i++) {
+			//TODO switch method with thumbnail
+			if (i % 5 == 0) {
+				if (i != 0) 
+					vbox.getChildren().add(gridPane);
 				
+				FXMLLoader FXMLLoader = new FXMLLoader(
+						getClass().getResource("../FXML/userPage_GridPane.fxml")
+				);
+				FXMLLoader.load();
+				userPage_GridPane userPage_GridPane = 
+					FXMLLoader.getController();
+				
+				gridPane = userPage_GridPane.getGridPane();
 			}
 			
-			Object object = root.getFile(i);
-			VBox vbox = new VBox(); 
-			//vbox.setPrefWidth(10);
-			//vbox.setPrefHeight(10);
+			Object object = currDir.getFile(i);
+			VBox vbox_temp = new VBox();
+			Label label;
+			ImageView imageview = null;
 			if (object instanceof Album) {
-				Album album 	 	= (Album) object;
-				ImageView imageview = new ImageView(album.getFileImage());
-				Label label 		= new Label(album.getFileName());
-				vbox.getChildren().addAll(imageview, label);
+				Album album = (Album) object;
+				imageview   = new ImageView(album.getImage());
+				imageview.setOnMouseClicked(e-> {
+					//TODO replace
+					System.out.println(album.getFileName());
+					
+				});
+				label 		= new Label(album.getFileName());
+				
 			} else {
-				System.out.println(object);
-				Photo photo 		= (Photo) object;
-				ImageView imageview = new ImageView(photo.getFileImage());
-				Label label 		= new Label(photo.getFileName());
-				vbox.getChildren().addAll(imageview, label);
+				Photo photo = (Photo) object;
+				imageview   = new ImageView(photo.getImage());
+				imageview.setOnMouseClicked(e-> {
+					//TODO replace
+					System.out.println(photo.getFileName());
+				});
+				label 	    = new Label(photo.getFileName());
 			}
-			FlowPane.getChildren().add(vbox);
+			imageview.setFitHeight(100);
+			imageview.setFitWidth(100);
+			vbox_temp.getChildren().addAll(imageview, label);
+			gridPane.add(vbox_temp, i % 5, 1);
 		}
+		if (gridPane != null)
+			vbox.getChildren().add(gridPane);
 		
-		/*
-		//ObservableList list = FlowPane.getChildren();
-		//FlowPane.setMargin(vbox, new Insets(20, 0, 20, 20));
-		for (int i = 0; i < root.getDir().size(); i++) {
-			Object object = root.getFile(i);
-			VBox vbox = new VBox(); 
-			//vbox.setPrefWidth(10);
-			//vbox.setPrefHeight(10);
-			if (object instanceof Album) {
-				Album album 	 	= (Album) object;
-				ImageView imageview = new ImageView(album.getFileImage());
-				Label label 		= new Label(album.getFileName());
-				vbox.getChildren().addAll(imageview, label);
-			} else {
-				System.out.println(object);
-				Photo photo 		= (Photo) object;
-				ImageView imageview = new ImageView(photo.getFileImage());
-				Label label 		= new Label(photo.getFileName());
-				vbox.getChildren().addAll(imageview, label);
-			}
-			FlowPane.getChildren().add(vbox);
-		}
-		*/
 	}	
 	
 	/*Task Bar; Handling buttons in File*/
+	
 	/**
-	 * method to create an album
-	 * @param Event
+	 * method to create album
+	 * @param event
 	 */
-	@FXML public void file_CreateAlbum (ActionEvent Event) {
+	@FXML public void file_CreateAlbum (ActionEvent event) {
 		//TODO Add functionality
 	}
 	/**
-	 * method to add a photo to file
-	 * @param Event
+	 * method to add photo to file, with different versions
+	 * @param event
+	 * @throws Exception
 	 */
-	@FXML public void file_AddPhoto (ActionEvent Event) {
-		//TODO Add functionality
+	@FXML public void file_AddPhoto (ActionEvent event) throws Exception{
+        FileChooser fileChooser = new FileChooser();  
+        fileChooser.setTitle("Open File");  
+        fileChooser.getExtensionFilters().addAll(
+    		new ExtensionFilter(
+    			"Image Files", "*.bmp", "*.gif", "*.jpeg", "*.png", "*.jpg"
+    		)
+        );
+        
+        Stage stage = new Stage();
+        stage.setTitle("Import image");  
+        File selectedFile = fileChooser.showOpenDialog(stage);
+        
+        Photo photo = new Photo(selectedFile);
+        currDir.addFile(photo);
+        vbox.getChildren().clear();
+        loadDir();
 	}
 	/**
-	 * delete certain photo
-	 * @param Event
+	 * delete selected photo
+	 * @param event
 	 */
-	@FXML public void file_DeleteSelected (ActionEvent Event) {
+	@FXML public void file_DeleteSelected (ActionEvent event) {
 		//TODO Add functionality
 	}
 	
 	/*Rest of Task Bar*/
 	/**
-	 * method to rename photo
-	 * @param Event
+	 * method to open photo
+	 * @param event
 	 */
-	@FXML public void rename (ActionEvent Event) {
-		//TODO Add functionality
+	@FXML public void open (ActionEvent event) {
+		/*
+		FXMLLoader FXMLLoader = new FXMLLoader(
+			getClass().getResource("../FXML/searchPhoto.fxml")
+		);
+		Parent root = FXMLLoader.load();
+		searchPhoto searchPhoto = FXMLLoader.getController();
+		searchPhoto.init();
+		Scene scene = new Scene(root);
+		Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+		stage.setScene(scene);
+		stage.setResizable(false);
+		stage.show();
+		*/
 	}
+	/**
+	 * method to rename
+	 * @param event
+	 */
+	@FXML public void rename (ActionEvent event) {
+		/*
+		FXMLLoader FXMLLoader = new FXMLLoader(
+			getClass().getResource("../FXML/searchPhoto.fxml")
+		);
+		Parent root = FXMLLoader.load();
+		searchPhoto searchPhoto = FXMLLoader.getController();
+		searchPhoto.init();
+		Scene scene = new Scene(root);
+		Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+		stage.setScene(scene);
+		stage.setResizable(false);
+		stage.show();
+		*/
+	}	
 	/**
 	 * method to edit photo
-	 * @param Event
+	 * @param event
 	 */
-	@FXML public void editPhoto (ActionEvent Event) {
-		//TODO Add functionality
-	}
-	/**
-	 * method to view the photo
-	 * @param Event
-	 */
-	@FXML public void viewPhoto (ActionEvent Event) {
-		//TODO Add functionality
+	@FXML public void editPhoto (ActionEvent event) {
+		//TODO
+		/*
+		FXMLLoader FXMLLoader = new FXMLLoader(
+			getClass().getResource("../FXML/searchPhoto.fxml")
+		);
+		Parent root = FXMLLoader.load();
+		searchPhoto searchPhoto = FXMLLoader.getController();
+		searchPhoto.init();
+		Scene scene = new Scene(root);
+		Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+		stage.setScene(scene);
+		stage.setResizable(false);
+		stage.show();
+		*/
 	}
 	/**
 	 * method to search photo
-	 * @param Event
+	 * @param event
 	 */
-	@FXML public void searchPhoto (ActionEvent Event) {
-		//TODO Add functionality
+	@FXML public void searchPhoto (ActionEvent event) {
+		/* TODO proper evaluation
+		FXMLLoader FXMLLoader = new FXMLLoader(
+			getClass().getResource("../FXML/searchPhoto.fxml")
+		);
+		Parent root = FXMLLoader.load();
+		searchPhoto searchPhoto = FXMLLoader.getController();
+		searchPhoto.init();
+		Scene scene = new Scene(root);
+		Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+		stage.setScene(scene);
+		stage.setResizable(false);
+		stage.show();
+		*/
 	}
 	/**
-	 * method to scroll left
-	 * @param Event
+	 * method to logout, switch scenes
+	 * @param event
+	 * @throws Exception
 	 */
-	@FXML public void scrollLeft (ActionEvent Event) {
-		//TODO Add functionality
-	}
-	/**
-	 * method to scroll right
-	 * @param Event
-	 */
-	@FXML public void scrollRight (ActionEvent Event) {
-		//TODO Add functionality
-	}
-	/**
-	 * method to logout of scene
-	 * @param Event
-	 */
-	@FXML public void logout (ActionEvent Event) {
-		//TODO Add functionality
+	@FXML public void logout (ActionEvent event) throws Exception{
+		while (lock.isLocked());
+		Serialize<Album> serialize = new Serialize<Album>(profile);
+		serialize.serialize(currDir);
+
+		FXMLLoader FXMLLoader = new FXMLLoader(
+				getClass().getResource("../FXML/login.fxml")
+			);
+		Parent root = FXMLLoader.load();
+		Scene scene = new Scene(root);
+		Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+		stage.setScene(scene);
+		stage.setResizable(false);
+		stage.show();
 	}
 }
-
-//Scrap Code
-/*
-for (int i = 0; i < root.getDir().size(); i++) {
-	//TODO Not required?
-	FXMLLoader FXMLLoader = new FXMLLoader(
-		getClass().getResource("../FXML/thumbnail.fxml")
-	);
-	Parent parent = FXMLLoader.load();
-	
-	Object object = root.getFile(i); 
-	thumbnail thumbnail = new thumbnail();
-	if (object instanceof Album) {
-		thumbnail.init((Album) object);
-	} else {
-		thumbnail.init((Photo) object);
-	}	
-}
-
-
-FXMLLoader FXMLLoader = new FXMLLoader(
-		getClass().getResource("../FXML/thumbnail.fxml")
-	);
-	FXMLLoader.load();
-	
-	thumbnail thumbnail = new thumbnail();
-	if (object instanceof Album) {
-		thumbnail.init((Album) object);
-	} else {
-		thumbnail.init((Photo) object);
-	}
-	FlowPane.getChildren().add(thumbnail.getPane());
-*/
