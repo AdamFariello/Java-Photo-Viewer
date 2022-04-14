@@ -111,7 +111,7 @@ public class userPage {
 	
 	/*Task Bar; Handling buttons in File*/
 	@FXML public void file_CreateAlbum (ActionEvent event) {
-		//TODO Add functionality
+		
 	}
 	@FXML public void file_AddPhoto (ActionEvent event) throws Exception{
         FileChooser fileChooser = new FileChooser();  
