@@ -83,7 +83,7 @@ public class userPage {
 		this.currDir 	  = root;
 		selectedFileColor = null;
 		selectedFile 	  = null;
-		previousDirs 	  = null
+		previousDirs 	  = null;
 		loadDir();
 	}
 	/**
@@ -255,7 +255,6 @@ public class userPage {
 		} else {
 			if (selectedFile instanceof Photo) {
 				Photo photo = (Photo) selectedFile;
-				
 				FXMLLoader FXMLLoader = new FXMLLoader(
 					getClass().getResource("../FXML/photoEnhance.fxml")
 				);
