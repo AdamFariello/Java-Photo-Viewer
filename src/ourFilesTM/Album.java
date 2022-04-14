@@ -16,10 +16,6 @@ import javafx.scene.image.Image;
 public class Album extends FileTM implements Serializable {
 	private static final long serialVersionUID = 2324073439905412687L;
 	private ArrayList<Object> directory;
-	/**
-	 * creates album
-	 * @param fileName
-	 */
 	public Album (String fileName) {
 		//Inherited items
 		this.fileName = fileName;
@@ -34,7 +30,7 @@ public class Album extends FileTM implements Serializable {
 	
 	/*Sets*/
 	/**
-	 * adds file
+	 * Mehtod to add File
 	 * @param object
 	 */
 	public void addFile (Object object) {
@@ -43,7 +39,7 @@ public class Album extends FileTM implements Serializable {
 	
 	/*Gets*/
 	/**
-	 * return directory from arraylist
+	 * Getter for directory
 	 * @return
 	 */
 	public ArrayList<Object> getDir() {
@@ -51,7 +47,7 @@ public class Album extends FileTM implements Serializable {
 		return directory;
 	}
 	/**
-	 * returns directories
+	 * method to return certain directory
 	 * @param i
 	 * @return
 	 */

@@ -10,13 +10,27 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 
+/**
+ * 
+ * @author Edison & Adam
+ * Serializes data
+ * @param <T>
+ */
 public class Serialize <T> implements Serializable{
 	private static final long serialVersionUID = 3438982363426716349L;
 	private File profile;
 	
+	/**
+	 * Gets this current profile
+	 * @param profile
+	 */
 	public Serialize(File profile) {
 		this.profile = profile;
 	}
+	/**
+	 * Serializes 
+	 * @param t
+	 */
 	public void serialize(T t) {
 		while(lock.isLocked());
 		lock.lock();
@@ -35,6 +49,10 @@ public class Serialize <T> implements Serializable{
 		}
 		lock.unlock();
 	}
+	/**
+	 * Method to deseralize
+	 * @return
+	 */
 	public T deserialize() {
 		while(lock.isLocked());
 		lock.lock();

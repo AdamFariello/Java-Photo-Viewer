@@ -5,7 +5,18 @@ import java.io.ByteArrayOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
+/**
+ * 
+ * @author Edison & Adam
+ *
+ * @param <T>
+ */
 public class deep <T>{
+	/**
+	 * Serializing / Deserializing
+	 * @param t
+	 * @return
+	 */
 	public T copy (T t) {
 		while(lock.isLocked());
 		lock.lock();

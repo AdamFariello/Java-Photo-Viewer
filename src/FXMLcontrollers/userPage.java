@@ -164,9 +164,10 @@ public class userPage {
 	
 	/*Task Bar; Handling buttons in File*/
 	/**
-	 * method to create an album
-	 * @param Event
+	 * method to create album
+	 * @param event
 	 */
+
 	@FXML public void file_CreateAlbum (ActionEvent event) throws Exception {
 		FXMLLoader FXMLLoader = new FXMLLoader(
 			getClass().getResource("../FXML/userPage_albumCreator.fxml")
@@ -186,8 +187,9 @@ public class userPage {
 	}
 	
 	/**
-	 * method to add a photo to file
-	 * @param Event
+	 * method to add photo to file, with different versions
+	 * @param event
+	 * @throws Exception
 	 */
 	@FXML public void file_AddPhoto (ActionEvent event) throws Exception{
         FileChooser fileChooser = new FileChooser();  
@@ -206,6 +208,7 @@ public class userPage {
         currDir.addFile(photo);
         vbox.getChildren().clear();
         loadDir();
+
 	}	
 	/**
 	 * delete certain photo
@@ -234,15 +237,27 @@ public class userPage {
 	
 	/*Rest of Task Bar*/
 	/**
-	 * method to view the photo
-	 * @param Event
+	 * method to open photo
+	 * @param event
 	 */
-	@FXML public void open (ActionEvent Event) {
-		//TODO Add functionality
+	@FXML public void open (ActionEvent event) {
+		/*
+		FXMLLoader FXMLLoader = new FXMLLoader(
+			getClass().getResource("../FXML/searchPhoto.fxml")
+		);
+		Parent root = FXMLLoader.load();
+		searchPhoto searchPhoto = FXMLLoader.getController();
+		searchPhoto.init();
+		Scene scene = new Scene(root);
+		Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+		stage.setScene(scene);
+		stage.setResizable(false);
+		stage.show();
+		*/
 	}
 	/**
-	 * method to rename photo
-	 * @param Event
+	 * method to rename
+	 * @param event
 	 */
 	@FXML public void rename (ActionEvent event) {
 		/*
@@ -258,12 +273,11 @@ public class userPage {
 		stage.setResizable(false);
 		stage.show();
 		*/
-
 	}	
 	
 	/**
 	 * method to edit photo
-	 * @param Event
+	 * @param event
 	 */
 	@FXML public void editPhoto (ActionEvent event) {
 		//TODO
@@ -281,6 +295,10 @@ public class userPage {
 		stage.show();
 		*/
 	}
+	/**
+	 * method to search photo
+	 * @param event
+	 */
 	@FXML public void searchPhoto (ActionEvent event) {
 		/* TODO proper evaluation
 		FXMLLoader FXMLLoader = new FXMLLoader(
@@ -297,8 +315,9 @@ public class userPage {
 		*/
 	}
 	/**
-	 * method to search photo
-	 * @param Event
+	 * method to logout, switch scenes
+	 * @param event
+	 * @throws Exception
 	 */
 	@FXML public void logout (ActionEvent event) throws Exception{
 		while (lock.isLocked());

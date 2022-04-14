@@ -1,5 +1,4 @@
 package ourFilesTM;
-
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.Serializable;
@@ -29,16 +28,17 @@ public abstract class FileTM implements Serializable{
 	}
 	
 	/**
-	 * getter for file
+	 * getter for image file
 	 * @return
 	 */
 	public File getFile() {
 		return imageFile;
 	}
-	
+
 	/**
-	 * getter for file image
+	 * getter for image
 	 * @return
+	 * @throws Exception
 	 */
 	public Image getImage() throws Exception {
 		//Image, and all javafx aren't serializable

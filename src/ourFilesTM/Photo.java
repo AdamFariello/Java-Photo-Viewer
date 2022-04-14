@@ -9,11 +9,10 @@ import java.util.LinkedList;
 
 import javafx.scene.image.Image;
 /**
- *  Class for photo
- * @author Edison & adam
+ * Photo Class
+ * @author Edison & Adam
  *
  */
-
 public class Photo extends FileTM implements Serializable{
 	//The reason why the tags are String is that 
 	//the tag data will be given as: "person:Ana person:Albert".
@@ -23,11 +22,13 @@ public class Photo extends FileTM implements Serializable{
 	private Calendar calendar;
 
 	/**
-	 * gets name /  image from file
+	 * Gets file name, image file
+	 * tags, and date of photo
 	 * @param file
 	 * @throws Exception
 	 */
-	public Photo (File file) throws Exception{
+
+	public Photo (File file) throws Exception {
 		//Inherited
 		fileName = file.getName();
 		imageFile = file;
@@ -41,14 +42,14 @@ public class Photo extends FileTM implements Serializable{
 	
 	/*Sets/Add Methods*/
 	/**
-	 * sets caption to image
+	 * "This" for caption
 	 * @param caption
 	 */
 	public void setCaption(String caption) {
 		this.caption = caption;
 	}
 	/**
-	 * adds tag to image
+	 * "This" method for tags
 	 * @param tags
 	 */
 	public void addTags (String tags) {
@@ -57,7 +58,7 @@ public class Photo extends FileTM implements Serializable{
 			this.tags.add(temp[i].split(":"));
 	}
 	/**
-	 * updates the date
+	 * Method for update
 	 */
 	public void updateDate() {
 		calendar = calendar.getInstance();
@@ -65,14 +66,14 @@ public class Photo extends FileTM implements Serializable{
 	
 	/*Get Methods*/
 	/**
-	 * getter for date
+	 * method to return date
 	 * @return
 	 */
 	public Date getDate() {
 		return calendar.getTime();
 	}
 	/**
-	 * getter for tags
+	 * Getters for tags
 	 * @return
 	 */
 	public String getTags() {
@@ -82,7 +83,7 @@ public class Photo extends FileTM implements Serializable{
 		return string;
 	}
 	/**
-	 * getter for caption
+	 * Getter for caption
 	 * @return
 	 */
 	public String getCaption() {
