@@ -148,7 +148,17 @@ public class userPage {
 	 * method to create an album
 	 * @param Event
 	 */
-	@FXML public void file_CreateAlbum (ActionEvent event) {
+	@FXML public void file_CreateAlbum (ActionEvent event) throws Exception {
+		FXMLLoader FXMLLoader = new FXMLLoader(
+			getClass().getResource("../FXML/userPage_GridPane.fxml")
+		);
+		Parent parent = FXMLLoader.load();
+		Scene scene = new Scene(parent);
+		Stage stage = new Stage();
+		stage.setScene(scene);
+		stage.setResizable(false);
+		stage.showAndWait();
+		
 		
 	}
 	
