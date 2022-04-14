@@ -7,12 +7,19 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-
+/**
+ * 
+ * @author Edison & Adam
+ *
+ */
 public class main extends Application{
 	private final int width  = 800;
 	private final int height = 600;
 	
 	@Override
+	/**
+	 * scene 
+	 */
 	public void start(Stage stage) throws Exception {
 		//System.out.println(System.getProperty("user.dir"));
 		//"../213/photos"
@@ -26,7 +33,9 @@ public class main extends Application{
 		stage.setResizable(false);
 		stage.show();
 	}
-	
+	/**
+	 * main method
+	 */
 	public static void main (String args []) {
 		launch(args);
 	}

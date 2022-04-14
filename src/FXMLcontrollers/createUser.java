@@ -11,15 +11,25 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Stage;
-
+/**
+ * 
+ * @author Edison & Adam
+ *
+ */
 public class createUser {
 	@FXML public TextField TextField;
 	private profileList profileList;
-	
+	/**
+	 * "This" function for profileList
+	 * @param profileList
+	 */
 	public void init (profileList profileList) {
 		this.profileList = profileList;
 	}
-	
+	/**
+	 * Action of creating a user on event
+	 * @param event
+	 */
 	@FXML public void createUser (ActionEvent event) {
 		while (lock.isLocked());
 		lock.lock();
@@ -44,6 +54,10 @@ public class createUser {
 		lock.unlock();
 	}
 	
+	/**
+	 * method to exit from the scene
+	 * @param event
+	 */
 	@FXML public void exitUser (ActionEvent event) {
 		while (lock.isLocked());
 		Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();

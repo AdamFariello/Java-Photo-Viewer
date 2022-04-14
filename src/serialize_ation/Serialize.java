@@ -4,15 +4,19 @@ import javafx.scene.image.Image;
 import javafx.scene.image.PixelReader;
 import javafx.scene.image.PixelWriter;
 import javafx.scene.image.WritableImage;
-
+/**
+ * serialization
+ * @author Edison & adam
+ *
+ */
 public class Serialize {
-	private static final long serialVersionUID = -1266447099158556616L;
+	private static final long serialVersionUID = -1232683273224L;
 	private int width, height;
 	private int[][] pixels;
-	
+
 	/**
-	 * Converts an Image object to a serializable representation
-	 * @param image the image to be converted
+	 * converts image to serializable state
+	 * @param image
 	 */
 	public Serialize(Image image) {
 		width = (int)image.getWidth();
@@ -20,14 +24,14 @@ public class Serialize {
 		pixels = new int[width][height];
 		
 		PixelReader reader = image.getPixelReader();
-		for (int currentWidth = 0; currentWidth < width; currentWidth++)
-			for (int currentHeight = 0; currentHeight < height; currentHeight++)
-				pixels[currentWidth][currentHeight] = reader.getArgb(currentWidth, currentHeight);
+		for (int x = 0; x < width; x++)
+			for (int y = 0; y < height; y++)
+				pixels[x][y] = reader.getArgb(x, y);
 	}
-	
+
 	/**
-	 * Converts the serialized representation back to an Image
-	 * @return Image object
+	 * converts text back into an image
+	 * @return
 	 */
 	public Image getImage() {
 		WritableImage image = new WritableImage(width, height);
@@ -39,26 +43,25 @@ public class Serialize {
 		
 		return image;
 	}
-	
 	/**
-	 * Gets the width of this image
-	 * @return the width of this image
+	 * getter for width
+	 * @return
 	 */
 	public int getWidth() {
 		return width;
 	}
 	
-	/**
-	 * Gets the height of this image
-	 * @return the height of this image
-	 */
+/**
+ * getter for height
+ * @return
+ */
 	public int getHeight() {
 		return height;
 	}
 	
 	/**
-	 * 2D Pixels array accessor
-	 * @return a 2D int array representing the color values
+	 * getter for pixels of image
+	 * @return
 	 */
 	public int[][] getPixels() {
 		return pixels;

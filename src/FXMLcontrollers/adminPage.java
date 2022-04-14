@@ -16,7 +16,11 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ListView;
 import javafx.stage.Stage;
-
+/**
+ * admin page
+ * @author Edison & Adam
+ *
+ */
 public class adminPage {
 	//TODO Add functionality to the controller
 	@FXML private ListView<String> listview;
@@ -28,6 +32,9 @@ public class adminPage {
 		loadList();
 	}
 	
+	/**
+	 * Method to load the list
+	 */
 	public void loadList() {
 		try {
 			//Variable setup
@@ -49,6 +56,11 @@ public class adminPage {
 	}
 	
 	/*Buttons*/
+	/**
+	 * method to logout
+	 * @param event
+	 * @throws Exception
+	 */
 	@FXML public void logout (ActionEvent event) throws Exception{
 		//Puts it in infinite loop until write is done
 		while (lock.isLocked());
@@ -63,6 +75,11 @@ public class adminPage {
 		stage.setResizable(false);
 		stage.show();
 	}
+	/**
+	 * method to create a user
+	 * @param event
+	 * @throws Exception
+	 */
 	@FXML public void createUser (ActionEvent event) throws Exception {		
 		//Setting up laod and initalizing the window	
 		FXMLLoader FXMLLoader = new FXMLLoader(
@@ -81,6 +98,9 @@ public class adminPage {
 		
 		loadList();
 	}
+	/**
+	 * method to delete a user
+	 */
 	@FXML public void deleteUser () {
 		while (lock.isLocked());
 		lock.lock();

@@ -8,14 +8,27 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
 import general.lock;
-
+/**
+ * other serializaton
+ * @author Edison & Adam
+ *
+ * @param <T>
+ */
 public class serializeAlt <T>{
 	
 	/*Regular Methods*/
+	/**
+	 * unserializes
+	 */
 	public serializeAlt() {}
 	public T deepClone(T t) {
 		return (T) unSerialize(serialize(t));
 	}
+	/**
+	 * Serializes image to file
+	 * @param profile
+	 * @param t
+	 */
 	public void serializeToFile(File profile, T t) {
 		//The T will be a LinkedList, but still applicable
 		while(lock.isLocked());
@@ -38,6 +51,11 @@ public class serializeAlt <T>{
 	}
 	
 	/*These methods won't be handled directly*/
+	/**
+	 * method for serializing
+	 * @param t
+	 * @return
+	 */
 	private ByteArrayOutputStream serialize(T t) {
 		try { 
 			ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
@@ -50,6 +68,11 @@ public class serializeAlt <T>{
 		}
 		return null;
 	}
+	/**
+	 * method to unserialize
+	 * @param byteArrayOutputStream
+	 * @return
+	 */
 	private T unSerialize(ByteArrayOutputStream byteArrayOutputStream) {
 		
 		try {

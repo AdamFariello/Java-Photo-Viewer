@@ -18,7 +18,11 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import ourFilesTM.Album;
 import ourFilesTM.Photo;
-
+/**
+ * User page
+ * @author Edison & Adam
+ *
+ */
 public class userPage {
 	@FXML VBox vbox; 
 	@FXML GridPane gridPane;
@@ -26,7 +30,13 @@ public class userPage {
 	private File file;
 	private Album root;
 	
+	
 	/*Initializing*/
+	/**
+	 * loads the files from the dir
+	 * @param file
+	 * @throws Exception
+	 */
 	public void init(File file) throws Exception{
 		//User has been created for the first
 		//time and requires a root directory
@@ -34,6 +44,12 @@ public class userPage {
 		root = new Album("/");
 		loadDir();
 	}
+	/**
+	 * loads images from the dir
+	 * @param file
+	 * @param root
+	 * @throws Exception
+	 */
 	public void init(File file, Album root) throws Exception{
 		//TODO Work on this when serialization
 		//is setup
@@ -42,7 +58,10 @@ public class userPage {
 		this.root = root;
 		loadDir();
 	}
-	
+	/**
+	 * loads the list of files
+	 * @throws Exception
+	 */
 	public void loadDir() throws Exception {
 		String dirPath = System.getProperty("user.dir");
 		File dir = new File(dirPath + "/stockPhotos");
@@ -102,35 +121,75 @@ public class userPage {
 	}	
 	
 	/*Task Bar; Handling buttons in File*/
+	/**
+	 * method to create an album
+	 * @param Event
+	 */
 	@FXML public void file_CreateAlbum (ActionEvent Event) {
 		//TODO Add functionality
 	}
+	/**
+	 * method to add a photo to file
+	 * @param Event
+	 */
 	@FXML public void file_AddPhoto (ActionEvent Event) {
 		//TODO Add functionality
 	}
+	/**
+	 * delete certain photo
+	 * @param Event
+	 */
 	@FXML public void file_DeleteSelected (ActionEvent Event) {
 		//TODO Add functionality
 	}
 	
 	/*Rest of Task Bar*/
+	/**
+	 * method to rename photo
+	 * @param Event
+	 */
 	@FXML public void rename (ActionEvent Event) {
 		//TODO Add functionality
 	}
+	/**
+	 * method to edit photo
+	 * @param Event
+	 */
 	@FXML public void editPhoto (ActionEvent Event) {
 		//TODO Add functionality
 	}
+	/**
+	 * method to view the photo
+	 * @param Event
+	 */
 	@FXML public void viewPhoto (ActionEvent Event) {
 		//TODO Add functionality
 	}
+	/**
+	 * method to search photo
+	 * @param Event
+	 */
 	@FXML public void searchPhoto (ActionEvent Event) {
 		//TODO Add functionality
 	}
+	/**
+	 * method to scroll left
+	 * @param Event
+	 */
 	@FXML public void scrollLeft (ActionEvent Event) {
 		//TODO Add functionality
 	}
+	/**
+	 * method to scroll right
+	 * @param Event
+	 */
 	@FXML public void scrollRight (ActionEvent Event) {
 		//TODO Add functionality
 	}
+	/**
+	 * method to logout of scene
+	 * @param Event
+	 */
 	@FXML public void logout (ActionEvent Event) {
 		//TODO Add functionality
 	}

@@ -14,11 +14,21 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import general.profileList;
 import FXMLcontrollers.*;
-
+/**
+ * login page
+ * @author Edison & Adam
+ *
+ */
 public class login {
 	@FXML private TextField TextField_login;
 	@FXML private Label label_incorrectLogin;
 	
+	/**
+	 * method to login to account
+	 * opens up new scene
+	 * @param event
+	 * @throws Exception
+	 */
 	@FXML public void logIn(ActionEvent event) throws Exception {
 		profileList profileList = new profileList();
 		File file = profileList.getFile(TextField_login.getText()); 
