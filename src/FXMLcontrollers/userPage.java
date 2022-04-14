@@ -15,6 +15,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.effect.ColorAdjust;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
@@ -29,6 +30,7 @@ public class userPage {
 	
 	private File profile;
 	private Album currDir;
+	private Object selectedFile;
 	
 	/*Initializing*/
 	public void init(File profile) throws Exception{
@@ -36,6 +38,7 @@ public class userPage {
 		//time and requires a root directory
 		this.profile = profile;
 		currDir = new Album("root");
+		selectedFile = null;
 		
 		if (profile.getName().equals("stock.txt")) {
 			String dirPath = System.getProperty("user.dir");
@@ -54,6 +57,7 @@ public class userPage {
 		//User has already used the program
 		this.profile = profile;
 		this.currDir = root;
+		selectedFile = null;
 		loadDir();
 	}
 	
@@ -79,28 +83,38 @@ public class userPage {
 			Object object = currDir.getFile(i);
 			VBox vbox_temp = new VBox();
 			Label label;
-			ImageView imageview = null;
+			ImageView imageview = null;			
+			ColorAdjust colorAdjust = new ColorAdjust(); 
+			
 			if (object instanceof Album) {
 				Album album = (Album) object;
 				imageview   = new ImageView(album.getImage());
 				imageview.setOnMouseClicked(e-> {
 					//TODO replace
-					System.out.println(album.getFileName());
-					
+					colorAdjust.setContrast(5.0);     
+				    colorAdjust.setHue(5.0);     
+				    colorAdjust.setSaturation(5.0);   
+				    
 				});
-				label 		= new Label(album.getFileName());
+				label = new Label(album.getFileName());
 				
 			} else {
 				Photo photo = (Photo) object;
 				imageview   = new ImageView(photo.getImage());
 				imageview.setOnMouseClicked(e-> {
 					//TODO replace
-					System.out.println(photo.getFileName());
+					colorAdjust.setContrast(5.0);     
+				    colorAdjust.setHue(5.0);     
+				    colorAdjust.setSaturation(5.0);   
+				    
 				});
-				label 	    = new Label(photo.getFileName());
+				label = new Label(photo.getFileName());
 			}
+			
+		    imageview.setEffect(colorAdjust);
 			imageview.setFitHeight(100);
 			imageview.setFitWidth(100);
+			
 			vbox_temp.getChildren().addAll(imageview, label);
 			gridPane.add(vbox_temp, i % 5, 1);
 		}
