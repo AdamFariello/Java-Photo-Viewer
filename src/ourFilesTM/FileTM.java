@@ -16,6 +16,10 @@ public abstract class FileTM implements Serializable{
 	protected String fileName;
 	protected File imageFile;
 
+	public void setFileName(String fileName) {
+		this.fileName = fileName;
+	}
+	
 	/**
 	 * getter for file name,
 	 * @return

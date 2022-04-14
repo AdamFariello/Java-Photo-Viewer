@@ -58,4 +58,8 @@ public class Album extends FileTM implements Serializable {
 	public Object getFile (int i) {
 		return directory.get(i);
 	}
+	
+	public void removeFile (Object o) {
+		directory.remove(o);
+	}
 }

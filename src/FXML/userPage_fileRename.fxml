@@ -7,7 +7,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="148.0" prefWidth="240.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="FXMLcontrollers.userPage_albumCreator">
    <children>
-      <Label layoutX="67.0" layoutY="38.0" text="Insert file name:" />
+      <Label layoutX="58.0" layoutY="43.0" prefHeight="19.0" prefWidth="124.0" text="Change Name to:" />
       <TextField fx:id="TextField" layoutX="39.0" layoutY="63.0" />
       <Button layoutX="55.0" layoutY="109.0" mnemonicParsing="false" onAction="#create" text="create" />
       <Button layoutX="137.0" layoutY="111.0" mnemonicParsing="false" onAction="#exit" text="exit" />
