@@ -3,26 +3,18 @@ package FXMLcontrollers;
 import java.io.File;
 
 import general.Serialize;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.geometry.Insets;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
-import javafx.stage.Stage;
 import ourFilesTM.Album;
 import ourFilesTM.Photo;
 
 public class userPage {
 	@FXML private VBox vbox; 
-	@FXML private GridPane gridPane;
 	
 	private File file;
 	private Album root;
@@ -52,33 +44,51 @@ public class userPage {
 			root.addFile(photo);
 		}
 		
-		Serialize<GridPane> serialize = new Serialize<GridPane>();
-		GridPane currGridPane = serialize.deepCopy(gridPane);
-		int i;
-		for (i = 0; i < root.getDir().size(); i++) {
-			if (i % 5 == 0 && i != 0) {
-				vbox.getChildren().add(currGridPane);
-				currGridPane = serialize.deepCopy(gridPane); 
+		//Presents folder view visual
+		GridPane gridPane = null;
+		for (int i = 0; i < root.getDir().size(); i++) {
+			if (i % 5 == 0) {
+				if (i != 0) 
+					vbox.getChildren().add(gridPane);
+				
+				FXMLLoader FXMLLoader = new FXMLLoader(
+						getClass().getResource("../FXML/userPage_GridPane.fxml")
+				);
+				FXMLLoader.load();
+				userPage_GridPane userPage_GridPane = 
+					FXMLLoader.getController();
+				
+				gridPane = userPage_GridPane.getGridPane();
 			}
 			
 			Object object = root.getFile(i);
-			VBox vbox_temp = new VBox(); 
-			
+			VBox vbox_temp = new VBox();
+			Label label;
+			ImageView imageview = null;
 			if (object instanceof Album) {
-				Album album 	 	= (Album) object;
-				ImageView imageview = new ImageView(album.getFileImage());
-				Label label 		= new Label(album.getFileName());
+				Album album = (Album) object;
+				imageview   = new ImageView(album.getFileImage());
+				imageview.setOnMouseClicked(e-> {
+					//TODO replace
+					System.out.println("test");
+				});
+				label 		= new Label(album.getFileName());
 				vbox_temp.getChildren().addAll(imageview, label);
 			} else {
-				Photo photo 		= (Photo) object;
-				ImageView imageview = new ImageView(photo.getFileImage());
-				Label label 		= new Label(photo.getFileName());
-				vbox_temp.getChildren().addAll(imageview, label);
+				Photo photo = (Photo) object;
+				imageview   = new ImageView(photo.getFileImage());
+				imageview.setOnMouseClicked(e-> {
+					//TODO replace
+					System.out.println("test");
+				});
+				label 	    = new Label(photo.getFileName());
 			}
-			currGridPane.add(vbox_temp, 0, i%5);
+			imageview.setFitHeight(100);
+			imageview.setFitWidth(100);
+			vbox_temp.getChildren().addAll(imageview, label);
+			gridPane.add(vbox_temp, i % 5, 1);
 		}
-		if (i%5 != 0)
-			vbox.getChildren().add(currGridPane);
+		vbox.getChildren().add(gridPane);
 		
 	}	
 	
@@ -96,7 +106,7 @@ public class userPage {
 	/*Rest of Task Bar*/
 	@FXML public void rename (ActionEvent Event) {
 		//TODO Add functionality
-	}
+	}	
 	@FXML public void editPhoto (ActionEvent Event) {
 		//TODO Add functionality
 	}
@@ -116,36 +126,3 @@ public class userPage {
 		//TODO Add functionality
 	}
 }
-
-//Scrap Code
-/*
-for (int i = 0; i < root.getDir().size(); i++) {
-	//TODO Not required?
-	FXMLLoader FXMLLoader = new FXMLLoader(
-		getClass().getResource("../FXML/thumbnail.fxml")
-	);
-	Parent parent = FXMLLoader.load();
-	
-	Object object = root.getFile(i); 
-	thumbnail thumbnail = new thumbnail();
-	if (object instanceof Album) {
-		thumbnail.init((Album) object);
-	} else {
-		thumbnail.init((Photo) object);
-	}	
-}
-
-
-FXMLLoader FXMLLoader = new FXMLLoader(
-		getClass().getResource("../FXML/thumbnail.fxml")
-	);
-	FXMLLoader.load();
-	
-	thumbnail thumbnail = new thumbnail();
-	if (object instanceof Album) {
-		thumbnail.init((Album) object);
-	} else {
-		thumbnail.init((Photo) object);
-	}
-	FlowPane.getChildren().add(thumbnail.getPane());
-*/
