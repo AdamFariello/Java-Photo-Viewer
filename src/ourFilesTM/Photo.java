@@ -19,9 +19,8 @@ public class Photo extends FileTM implements Serializable{
 	
 	public Photo (File file) throws Exception {
 		//Inherited
-		FileInputStream stream = new FileInputStream(file.toString());
-		fileImage = new Image(stream);
 		fileName = file.getName();
+		imageFile = file;
 		
 		//unique
 		caption = "";

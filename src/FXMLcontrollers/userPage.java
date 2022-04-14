@@ -36,6 +36,17 @@ public class userPage {
 		//time and requires a root directory
 		this.profile = profile;
 		currDir = new Album("root");
+		
+		if (profile.getName().equals("stock.txt")) {
+			String dirPath = System.getProperty("user.dir");
+			File dir = new File(dirPath + "/stockPhotos");
+			File[] files = dir.listFiles();
+			for (int i = 0; i < files.length; i++) {
+				Photo photo = new Photo(files[i]);
+				currDir.addFile(photo);
+			}
+		}
+		
 		loadDir();
 	}
 	public void init(File profile, Album root) throws Exception{
@@ -71,7 +82,7 @@ public class userPage {
 			ImageView imageview = null;
 			if (object instanceof Album) {
 				Album album = (Album) object;
-				imageview   = new ImageView(album.getFileImage());
+				imageview   = new ImageView(album.getImage());
 				imageview.setOnMouseClicked(e-> {
 					//TODO replace
 					System.out.println(album.getFileName());
@@ -81,7 +92,7 @@ public class userPage {
 				
 			} else {
 				Photo photo = (Photo) object;
-				imageview   = new ImageView(photo.getFileImage());
+				imageview   = new ImageView(photo.getImage());
 				imageview.setOnMouseClicked(e-> {
 					//TODO replace
 					System.out.println(photo.getFileName());

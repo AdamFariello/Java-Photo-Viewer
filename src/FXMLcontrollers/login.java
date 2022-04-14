@@ -37,7 +37,7 @@ public class login {
 					adminPage adminPage = FXMLLoader.getController();
 					adminPage.init(profileList);
 					break;
-					
+				
 				default: 
 					FXMLLoader = new FXMLLoader(
 						getClass().getResource("../FXML/userPage.fxml")

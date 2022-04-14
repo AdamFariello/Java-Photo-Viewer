@@ -1,5 +1,6 @@
 package ourFilesTM;
 
+import java.io.File;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -13,8 +14,8 @@ public class Album extends FileTM implements Serializable {
 		//Inherited items
 		this.fileName = fileName;
 		String curDir = System.getProperty("user.dir");
-		fileImage = new Image(
-			"file: " + curDir + "/src/ourFilesTM/folderIcon.png"
+		imageFile = new File(
+			curDir + "/src/ourFilesTM/folderIcon.png"
 		);	
 		
 		//unique

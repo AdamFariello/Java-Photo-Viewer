@@ -21,7 +21,7 @@ public class photoEnhance {
 	@FXML public TextArea tf_tags;
 	
 	public void loadPhoto (Photo photo) throws Exception {
-		ImageViewer.setImage(photo.getFileImage());
+		ImageViewer.setImage(photo.getImage());
 		lb_Name.setText(photo.getFileName());
 		tf_caption.setText(photo.getCaption());
 		tf_tags.setText(photo.getTags());	

@@ -38,17 +38,16 @@ public class Serialize <T> implements Serializable{
 	public T deserialize() {
 		while(lock.isLocked());
 		lock.lock();
+		T t = null;
 		try {
 			ObjectInputStream ois = new ObjectInputStream(
 				new FileInputStream(profile)
 			);
-			return (T) ois.readObject();
+			t = (T) ois.readObject();
 		} catch (Exception e) {
 			//Catches empty list or bad serializations
-			//System.out.println("[DEBUG] Serialize.deserialize");
-			//System.out.println(e);
 		}
 		lock.unlock();
-		return null;
+		return t;
 	}
 }
