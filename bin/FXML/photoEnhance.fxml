@@ -17,16 +17,11 @@
    <children>
       <ToolBar prefHeight="27.0" prefWidth="661.0">
          <items>
-            <Button mnemonicParsing="false" onAction="#Exit" text="exit" />
+            <Button mnemonicParsing="false" onAction="#exit" text="exit" />
             <Line endX="-99.37867736816406" endY="38.19041061401367" opacity="0.52" startX="-100.0" />
-            <Button mnemonicParsing="false" onAction="#rename" text="rename" />
-            <Button mnemonicParsing="false" onAction="#editPhoto" text="edit Photo" />
-            <Button mnemonicParsing="false" onAction="#viewPhoto" text="view Photo" />
-            <Button mnemonicParsing="false" onAction="#searchPhoto" text="search Photo" />
-            <Line endX="-99.37867736816406" endY="38.19041061401367" opacity="0.52" startX="-100.0" stroke="#000000c9" />
             <Button mnemonicParsing="false" onAction="#scrollLeft" text="&lt;" />
             <Button mnemonicParsing="false" onAction="#scrollRight" text="&gt;" />
-            <Label prefHeight="25.0" prefWidth="50.0" text="space" textFill="TRANSPARENT">
+            <Label prefHeight="26.0" prefWidth="404.0" text="space" textFill="TRANSPARENT">
                <font>
                   <Font size="1.0" />
                </font>

@@ -260,7 +260,7 @@ public class userPage {
 				);
 				Parent root = FXMLLoader.load();
 				photoEnhance photoEnhance = FXMLLoader.getController();
-				photoEnhance.loadPhoto(photo);
+				photoEnhance.loadPhoto(photo, profile, currDir);
 				
 				Scene scene = new Scene(root);
 				Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();

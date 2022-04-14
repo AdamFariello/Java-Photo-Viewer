@@ -32,22 +32,18 @@ public class searchPhotos {
 	private File profile;
 	private Album currDir;
 	
+	@FXML private RadioButton andRadio;
+    @FXML private TextField fromDate, tag1, tag2, toDate;
+    @FXML private RadioButton orRadio;
+    @FXML private Button searchButton;
+    @FXML private VBox vbox;
+    
 	public void init(File profile) throws Exception{
 		//User has been created for the first
 		//time and requires a root directory
 		this.profile = profile;
 		currDir = new Album("root");
-		
-		if (profile.getName().equals("stock.txt")) {
-			String dirPath = System.getProperty("user.dir");
-			File dir = new File(dirPath + "/stockPhotos");
-			File[] files = dir.listFiles();
-			for (int i = 0; i < files.length; i++) {
-				Photo photo = new Photo(files[i]);
-				currDir.addFile(photo);
-			}
-		}
-		
+				
 		loadDir();
 	}
 	/**
@@ -122,29 +118,6 @@ public class searchPhotos {
 	}	
 	
     @FXML
-    private RadioButton andRadio;
-
-    @FXML
-    private TextField fromDate;
-
-    @FXML
-    private RadioButton orRadio;
-
-    @FXML
-    private Button searchButton;
-
-    @FXML
-    private TextField tag1;
-
-    @FXML
-    private TextField tag2;
-
-    @FXML
-    private TextField toDate;
-    @FXML
-    private VBox vbox;
-
-    @FXML
     void exitPage(ActionEvent event) {
     		//sends you to user screen
     }
@@ -186,9 +159,6 @@ public class searchPhotos {
 
     @FXML
     void viewPhoto(ActionEvent event) {
-    	
     	//IF IMAGE IS clicked AND view photo is clicked as well, open a separate scene with photo
-    	
     }
-
 }

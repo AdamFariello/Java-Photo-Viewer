@@ -55,6 +55,13 @@ public class Album extends FileTM implements Serializable {
 		return directory.get(i);
 	}
 	
+	public int locateFile (Object o) {
+		for (int i = 0; i < directory.size(); i++)
+			if (directory.get(i) == o)
+				return i;
+		
+		return -1;
+	}
 	public void removeFile (Object o) {
 		directory.remove(o);
 	}
