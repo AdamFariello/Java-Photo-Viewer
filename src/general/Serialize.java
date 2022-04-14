@@ -30,7 +30,7 @@ public class Serialize <T> implements Serializable{
 			);
 			oos.writeObject(t);
 		} catch (Exception e) {
-			System.out.println("[DEBUG] serializeAlt.serializeToFile");
+			System.out.println("[DEBUG] serializeAlt.serialize");
 			System.out.println(e);
 		}
 		lock.unlock();

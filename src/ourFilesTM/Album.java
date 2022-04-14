@@ -6,7 +6,7 @@ import java.util.LinkedList;
 
 import javafx.scene.image.Image;
 
-public class Album extends FileTM {
+public class Album extends FileTM implements Serializable {
 	private static final long serialVersionUID = 2324073439905412687L;
 	private ArrayList<Object> directory;
 	public Album (String fileName) {
