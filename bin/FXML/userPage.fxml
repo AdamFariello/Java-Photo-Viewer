@@ -27,14 +27,12 @@
               </menus>
             </MenuBar>
             <Line endX="-99.37867736816406" endY="38.19041061401367" opacity="0.52" startX="-100.0" />
+          <Button mnemonicParsing="false" onAction="#open" text="open" />
             <Button mnemonicParsing="false" onAction="#rename" text="rename" />
             <Button mnemonicParsing="false" onAction="#editPhoto" text="edit Photo" />
-          <Button mnemonicParsing="false" onAction="#viewPhoto" text="view Photo" />
             <Button mnemonicParsing="false" onAction="#searchPhoto" text="search Photo" />
             <Line endX="-99.37867736816406" endY="38.19041061401367" opacity="0.52" startX="-100.0" stroke="#000000c9" />
-            <Button mnemonicParsing="false" onAction="#scrollLeft" text="&lt;" />
-            <Button mnemonicParsing="false" onAction="#scrollRight" text="&gt;" />
-            <Label prefHeight="19.0" prefWidth="100.0" text="space" textFill="TRANSPARENT">
+            <Label prefHeight="20.0" prefWidth="189.0" text="space" textFill="TRANSPARENT">
                <font>
                   <Font size="1.0" />
                </font>

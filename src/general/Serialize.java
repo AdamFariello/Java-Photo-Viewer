@@ -14,40 +14,8 @@ public class Serialize <T> implements Serializable{
 	private static final long serialVersionUID = 3438982363426716349L;
 	private File profile;
 	
-	/*Method to interate with privates*/
-	public Serialize() {
-		this.profile = null;
-	}
 	public Serialize(File profile) {
 		this.profile = profile;
-	}
-	@SuppressWarnings("unchecked")
-	public T deepCopy(T t) {
-		//TODO Make these process their own methods
-		while(lock.isLocked());
-		lock.lock();
-		
-		T t2 = null;
-		try { 
-			//Serialize
-			ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-	        ObjectOutputStream objectOutputStream = new ObjectOutputStream(byteArrayOutputStream);
-	        objectOutputStream.writeObject(t);
-	     
-	        //Deserialized
-	        ByteArrayInputStream bais = new ByteArrayInputStream(
-					byteArrayOutputStream.toByteArray()
-			);
-	        ObjectInputStream objectInputStream = new ObjectInputStream(bais);
-	        t2 = (T) objectInputStream.readObject();
-	        System.out.println(t);
-	        System.out.println(t2);
-		} catch (Exception e) {
-			System.out.println("[DEBUG] Error in serializeAlt.serialize");
-			System.out.println(e);
-		}	
-		lock.unlock();	
-		return t2;
 	}
 	public void serialize(T t) {
 		while(lock.isLocked());

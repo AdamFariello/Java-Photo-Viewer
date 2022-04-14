@@ -16,7 +16,7 @@ public class Photo extends FileTM{
 	private LinkedList<String[]> tags;
 	private Calendar calendar;
 	
-	public Photo (File file) throws Exception{
+	public Photo (File file) throws Exception {
 		//Inherited
 		FileInputStream stream = new FileInputStream(file.toString());
 		fileImage = new Image(stream);
