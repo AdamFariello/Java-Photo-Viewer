@@ -35,9 +35,12 @@ public class Serialize <T> implements Serializable{
 		while(lock.isLocked());
 		lock.lock();
 		try {
+			/*
 			//Wiping File (Optional?)
 			profile.delete();
 			profile.createNewFile();
+			*/
+			//TODO add a way to wipe previously used file
 			
 			ObjectOutputStream oos = new ObjectOutputStream(
 				new FileOutputStream(profile)
@@ -49,6 +52,7 @@ public class Serialize <T> implements Serializable{
 		}
 		lock.unlock();
 	}
+	
 	/**
 	 * Method to deseralize
 	 * @return

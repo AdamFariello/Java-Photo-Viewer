@@ -302,8 +302,7 @@ public class userPage {
 			alert.setTitle("No file selected");
 			alert.setHeaderText("Select a file if you wish to rename it");
 			alert.show();
-		}
-			
+		}	
 	}	
 	
 	/**
