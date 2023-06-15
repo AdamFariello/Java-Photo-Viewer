@@ -40,7 +40,7 @@ Download the library [here](https://gluonhq.com/products/javafx/)
 1. Download eclipse from [their site](https://www.eclipse.org/downloads/packages/),
 2. Go into: File -> Import -> General -> Existing Project into WorkSpace
 3. Go into: Java Build Path -> Libraries -> Add External Jars -> Where JavaFX is downloaded
-4. Go into: run configurations (for src/songlib.java) -> arguments -> add to VM arguments:
+4. Go into: run configurations (for src/songlib.java) -> arguments -> add to VM arguments:   
   "`-–module-path –add-modules javafx.controls,javafx.fxml,javafx.media`"
 
 #### Using eclipse (JavaFX creator recomendations) 
