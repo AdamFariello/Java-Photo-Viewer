@@ -17,7 +17,7 @@ The user can also:
 The program also remembers the list inbetween sessions.
 
 ### Where this repository comes from
-This repository is the work from, and for, the cs213 assignment: *"Song Library"*.   
+This repository is the work from, and for, the cs213 assignment: *"Photo Viewer"*.   
 [The course](https://www.cs.rutgers.edu/academics/undergraduate/course-synopses/course-details/01-198-213-software-methodology) was taken during Spring 2021
 
 ---
